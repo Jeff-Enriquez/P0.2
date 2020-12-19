@@ -1,6 +1,6 @@
 package com.BankApp.Models;
 
-public class Customer implements User {
+public class Customer implements Account {
 	private String username;
 	private String email;
 	private String password;
