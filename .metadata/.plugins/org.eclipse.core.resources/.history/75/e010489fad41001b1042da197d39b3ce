@@ -1,6 +1,6 @@
 package com.BankApp.Models;
 
-public interface Account {
+public interface User {
 	public String getUsername();
 	public void setUsername(String username);
 	public String getPassword();
