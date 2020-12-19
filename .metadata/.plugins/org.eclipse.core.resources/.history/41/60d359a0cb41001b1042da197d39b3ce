@@ -22,9 +22,7 @@ public class EmployeeDoa {
 			rs.next();
 			//throw exception if username does not exist
 			String confirmPassword = rs.getString("password");
-			if(!password.equals(confirmPassword)) {				
-				throw new PasswordMatchException();
-			}
+			throw new PasswordMatchException();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

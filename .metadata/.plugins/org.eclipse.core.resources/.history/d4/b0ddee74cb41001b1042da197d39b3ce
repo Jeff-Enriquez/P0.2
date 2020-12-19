@@ -43,16 +43,20 @@ public class Main {
 		try {
 			e = employeeDoa.selectEmployee(username, password);
 		} catch(PasswordMatchException exception) {
-			exception.printStackTrace();
+			
 		}
-		System.out.println(e.toString());
 	}
 	private static void createCustomer() {
 		String username = getUsername();
 		String password = createPassword();
 		boolean isSubmitted = false;
 		while(!isSubmitted) {
-			Customer c = new Customer(username, password);
+			Customer c = null;
+			try {
+				c = new Customer(username, password);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			CustomerDoa customerDoa = new CustomerDoa();
 			isSubmitted = customerDoa.submitApplication(c);
 			if(!isSubmitted) {

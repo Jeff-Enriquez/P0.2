@@ -2,9 +2,8 @@ package com.BankApp;
 
 import java.util.Scanner;
 
-import com.BankApp.CustomExceptions.*;
-import com.BankApp.Doa.*;
-import com.BankApp.Models.*;
+import com.BankApp.Doa.CustomerDoa;
+import com.BankApp.Models.Customer;
 
 public class Main {
 	final static Scanner sc = new Scanner(System.in);
@@ -36,23 +35,21 @@ public class Main {
 		}
 	}
 	private static void employeeLogin() {
-		Employee e = null;
 		String username = getUsername();
 		String password = getPassword();
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		try {
-			e = employeeDoa.selectEmployee(username, password);
-		} catch(PasswordMatchException exception) {
-			exception.printStackTrace();
-		}
-		System.out.println(e.toString());
+		
 	}
 	private static void createCustomer() {
 		String username = getUsername();
 		String password = createPassword();
 		boolean isSubmitted = false;
 		while(!isSubmitted) {
-			Customer c = new Customer(username, password);
+			Customer c = null;
+			try {
+				c = new Customer(username, password);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			CustomerDoa customerDoa = new CustomerDoa();
 			isSubmitted = customerDoa.submitApplication(c);
 			if(!isSubmitted) {
