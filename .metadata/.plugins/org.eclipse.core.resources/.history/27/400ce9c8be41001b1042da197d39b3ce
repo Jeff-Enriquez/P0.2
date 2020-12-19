@@ -8,21 +8,6 @@ import com.BankApp.Models.Customer;
 import com.BankApp.Util.ConnectionFactory;
 
 public class CustomerDoa {
-	public void submitApplication(Customer c) {
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "INSERT INTO account_application values" 
-				+ "(?,?,'customer');";
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, c.username);
-			ps.setString(2, c.getPassword());
-			ps.execute();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void insertCustomer(Customer c) {
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "INSERT INTO cafe_customer (name, password, email, num_of_orders) values" 
