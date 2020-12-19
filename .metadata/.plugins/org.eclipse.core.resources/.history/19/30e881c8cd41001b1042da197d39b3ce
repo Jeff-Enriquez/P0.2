@@ -50,7 +50,6 @@ public class Main {
 				isValid = false;
 			} catch(UsernameException exception) {
 				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
 			}
 		}
 	}

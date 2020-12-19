@@ -46,12 +46,9 @@ public class Main {
 			try {
 				e = employeeDoa.selectEmployee(username, password);
 			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
+				System.out.println("Password was incorrect");
 				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
+			} 
 		}
 	}
 	private static void createCustomer() {

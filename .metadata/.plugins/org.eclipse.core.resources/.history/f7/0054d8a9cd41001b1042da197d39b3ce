@@ -11,7 +11,7 @@ import com.BankApp.CustomExceptions.*;
 
 public class EmployeeDoa {
 	
-	public Employee selectEmployee(String username, String password) throws PasswordMatchException, UsernameException{
+	public Employee selectEmployee(String username, String password) throws PasswordMatchException{
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select password from employee where "
 				+ "username = ?;";
@@ -19,9 +19,8 @@ public class EmployeeDoa {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				throw new UsernameException();
-			}
+			rs.next();
+			//throw exception if username does not exist
 			String confirmPassword = rs.getString("password");
 			if(!password.equals(confirmPassword)) {				
 				throw new PasswordMatchException();

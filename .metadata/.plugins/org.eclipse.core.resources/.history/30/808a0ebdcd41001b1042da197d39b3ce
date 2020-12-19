@@ -48,10 +48,7 @@ public class Main {
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
+			} 
 		}
 	}
 	private static void createCustomer() {

@@ -36,23 +36,16 @@ public class Main {
 		}
 	}
 	private static void employeeLogin() {
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		boolean isValid = false;
 		Employee e = null;
-		while(!isValid) {
-			isValid = true;
-			String username = getUsername();
-			String password = getPassword();
-			try {
-				e = employeeDoa.selectEmployee(username, password);
-			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
-				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
+		String username = getUsername();
+		String password = getPassword();
+		EmployeeDoa employeeDoa = new EmployeeDoa();
+		try {
+			e = employeeDoa.selectEmployee(username, password);
+		} catch(PasswordMatchException exception) {
+			exception.printStackTrace();
 		}
+		System.out.println(e.toString());
 	}
 	private static void createCustomer() {
 		String username = getUsername();
