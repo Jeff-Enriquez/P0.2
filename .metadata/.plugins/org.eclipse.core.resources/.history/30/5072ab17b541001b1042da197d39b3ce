@@ -1,9 +1,9 @@
 package com.BankApp.Models;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Customer extends User {
-	HashSet<String> accounts = new HashSet<String>();
+	HashMap<String, Account> accounts = new HashMap<String, Account>();
 	
 	Customer(String username, String password) throws Exception{
 		super(username, password);

@@ -1,22 +1,13 @@
 package com.BankApp.Models;
 
 public class Account {
-	private String customer;
+	private String customerId;
 	private String accountId;
 	private Double balance;
 	
-	Account(String customer, String accountId){
-		this.customer = customer;
-		this.accountId = accountId;
+	Account(String customerId){
+		this.customerId = customerId;
 		this.balance = 0.0;
-	}
-	
-	public String getAccountId() {
-		return accountId;
-	}
-	
-	public String getCustomer() {
-		return customer;
 	}
 	
 	public void deposit(Double cash) throws Exception {

@@ -1,0 +1,16 @@
+package com.BankApp.Models;
+
+public class UserFactory {
+	public static User getDessert(String userType) {
+        switch(userType) {
+            case "Customer":
+                return new Customer();
+            case "cookie":
+                return new Cookie();
+            case "ice cream":
+                return new IceCream();
+            default:
+                throw new DessertNotFoundException(dessertType + " not found!");
+        }
+	}
+}
