@@ -206,3 +206,141 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:41:55.481
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:12.934
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:12.944
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@7f942320[org.springframework.tooling.boot.ls:1.23.0.202010230633(id=673)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:12.955
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:12.987
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:43:13.317
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:43:13.331
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:13.542
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:13.549
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@7f942320[org.springframework.tooling.boot.ls:1.23.0.202010230633(id=673)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:13.556
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:43:14.353
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:43:14.361
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.017
+!MESSAGE Boot LS startup time from start to initialized: 2452ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.102
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.ggLSBOuKisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.116
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.124
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.131
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.137
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.143
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.ggLSBOuK => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.148
+!MESSAGE classpath=10 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.155
+!MESSAGE buffering callback sts4.classpath.ggLSBOuK BankApp false 10
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.160
+!MESSAGE executing callback sts4.classpath.ggLSBOuK 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:43:16.183
+!MESSAGE executing callback sts4.classpath.ggLSBOuK SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:08.317
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ggLSBOuK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:08.324
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.ggLSBOuK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:08.332
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:08.338
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.ggLSBOuK => OK
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:45:08.528
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:45:08.540
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:45:28.923
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:45:28.938
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:29.004
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:29.011
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@7f942320[org.springframework.tooling.boot.ls:1.23.0.202010230633(id=673)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:29.019
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.279
+!MESSAGE Boot LS startup time from start to initialized: 2252ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.360
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.VdDZvlisisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.377
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.385
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.392
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.400
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.410
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.VdDZvlis => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.418
+!MESSAGE classpath=10 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.426
+!MESSAGE buffering callback sts4.classpath.VdDZvlis BankApp false 10
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.434
+!MESSAGE executing callback sts4.classpath.VdDZvlis 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-12-18 19:45:31.465
+!MESSAGE executing callback sts4.classpath.VdDZvlis SUCCESS [done]
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:47:35.796
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2020-12-18 19:47:35.805
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
