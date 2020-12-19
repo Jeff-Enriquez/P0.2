@@ -1,0 +1,67 @@
+package com.BankApp;
+
+import java.util.Scanner;
+
+public class Main {
+	final static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		String continueApplication = "YES";
+		System.out.println("Welcome to Bank App");
+		while(continueApplication.equals("YES")) {			
+			System.out.println("Would you like to:");
+			System.out.println("1) Login");
+			System.out.println("2) Create Account");
+			System.out.println("3) Employee login");
+			String input = sc.nextLine();
+			switch(input) {
+			case "1":
+				customerLogin();
+				break;
+			case "2":
+				createCustomer();
+				break;
+			case "3":
+				employeeLogin();
+				break;
+			default:
+				System.out.println("Your input was incorrect");
+			}
+			
+			System.out.println("Enter \"YES\" if you would like to go back to the welcome screen");
+			continueApplication = sc.nextLine();
+		}
+	}
+	private static void employeeLogin() {
+		String username = getUsername();
+		String password = getPassword();
+		
+	}
+	private static void createCustomer() {
+		String username = getUsername();
+		String password = getPassword();
+		
+	}
+	private static void customerLogin() {
+		// TODO Auto-generated method stub
+		
+	}
+	private static String getUsername() {
+		System.out.print("Enter username: ");
+		return sc.nextLine();
+	}
+	private static String getPassword() {
+		String password1 = "p1";
+		String password2 = "p2";
+		while(password1 != password2) {
+			System.out.print("Enter password: ");
+			password1 = sc.nextLine();
+			System.out.print("Confirm pasword: ");
+			password2 = sc.nextLine();
+			if(password1 != password2) {
+				System.out.println("Passwords do not match. Try again.");
+			}
+		}
+		return password1;
+	}
+
+}
