@@ -4,7 +4,7 @@ public class Customer extends User {
 	private String email;
 	private String customerId;
 	
-	Customer(String username, String email, String password) throws Exception{
+	Customer(String username, String email, String password){
 		super(username, password);
 		this.email = email;
 	}
