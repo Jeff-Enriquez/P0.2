@@ -1,0 +1,17 @@
+package com.BankApp.Doa;
+
+import java.sql.Connection;
+
+import com.BankApp.Models.Employee;
+import com.BankApp.Util.ConnectionFactory;
+
+public class EmployeeDoa {
+	
+	public Employee selectEmployee(String username, String password) {
+		Connection conn = ConnectionFactory.getConnection();
+		
+		Employee e = null;
+		
+		return e;
+	}
+}
