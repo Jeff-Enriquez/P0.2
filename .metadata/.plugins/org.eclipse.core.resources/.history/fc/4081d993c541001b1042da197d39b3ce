@@ -54,7 +54,7 @@ public class Main {
 			isSubmitted = customerDoa.submitApplication(c);
 			if(!isSubmitted) {
 				System.out.println("That username has been taken.");
-				System.out.print("Please enter a new username: ");
+				System.out.println("Please enter a new username: ");
 				username = sc.nextLine();
 			}
 		}

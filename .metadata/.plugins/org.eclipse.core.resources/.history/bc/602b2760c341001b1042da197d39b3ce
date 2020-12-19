@@ -1,0 +1,54 @@
+package com.BankApp.Doa;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashSet;
+
+import com.BankApp.Models.Customer;
+import com.BankApp.Util.ConnectionFactory;
+
+public class CustomerDoa {
+	public void submitApplication(Customer c) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "select username from account_application where account_type = 'customer';";
+//		HashSet<String> usernames = new HashSet<String>();
+//		try {
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ResultSet rs = ps.executeQuery();
+//			while(rs.next()) {	
+//				usernames.add(rs.getString("username"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+		sql = "INSERT INTO account_application values" 
+				+ "(?,?,'customer');";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, c.username);
+			ps.setString(2, c.getPassword());
+			ps.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.getSQLState();
+		}
+	}
+	
+	public void insertCustomer(Customer c) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "INSERT INTO cafe_customer (name, password, email, num_of_orders) values" 
+				+ "(?,?,?,0);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, c.username);
+			ps.setString(2, c.getPassword());
+			ps.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

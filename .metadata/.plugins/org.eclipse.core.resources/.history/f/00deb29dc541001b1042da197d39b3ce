@@ -58,6 +58,7 @@ public class CustomerDoa {
 			e.printStackTrace();
 			isValid = false;
 		}
+		System.out.println("usernames: " + usernames.toString());
 		return isValid && usernames.add(username);
 	}
 	

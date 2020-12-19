@@ -42,22 +42,14 @@ public class Main {
 	private static void createCustomer() {
 		String username = getUsername();
 		String password = createPassword();
-		boolean isSubmitted = false;
-		while(!isSubmitted) {
-			Customer c = null;
-			try {
-				c = new Customer(username, password);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			CustomerDoa customerDoa = new CustomerDoa();
-			isSubmitted = customerDoa.submitApplication(c);
-			if(!isSubmitted) {
-				System.out.println("That username has been taken.");
-				System.out.print("Please enter a new username: ");
-				username = sc.nextLine();
-			}
+		Customer c = null;
+		try {
+			c = new Customer(username, password);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		CustomerDoa customerDoa = new CustomerDoa();
+		customerDoa.submitApplication(c);
 	}
 	private static void customerLogin() {
 		String username = getUsername();

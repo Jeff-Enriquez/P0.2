@@ -2,7 +2,6 @@ package com.BankApp;
 
 import java.util.Scanner;
 
-import com.BankApp.Doa.CustomerDoa;
 import com.BankApp.Models.Customer;
 
 public class Main {
@@ -42,22 +41,13 @@ public class Main {
 	private static void createCustomer() {
 		String username = getUsername();
 		String password = createPassword();
-		boolean isSubmitted = false;
-		while(!isSubmitted) {
-			Customer c = null;
-			try {
-				c = new Customer(username, password);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			CustomerDoa customerDoa = new CustomerDoa();
-			isSubmitted = customerDoa.submitApplication(c);
-			if(!isSubmitted) {
-				System.out.println("That username has been taken.");
-				System.out.print("Please enter a new username: ");
-				username = sc.nextLine();
-			}
+		Customer c = null;
+		try {
+			c = new Customer(username, password);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 	private static void customerLogin() {
 		String username = getUsername();
@@ -75,12 +65,12 @@ public class Main {
 	private static String createPassword() {
 		String password1 = "p1";
 		String password2 = "p2";
-		while(!password1.equals(password2)) {
+		while(password1 != password2) {
 			System.out.print("Enter password: ");
 			password1 = sc.nextLine();
 			System.out.print("Confirm pasword: ");
 			password2 = sc.nextLine();
-			if(!password1.equals(password2)) {
+			if(password1 != password2) {
 				System.out.println("Passwords do not match. Try again.");
 			}
 		}
