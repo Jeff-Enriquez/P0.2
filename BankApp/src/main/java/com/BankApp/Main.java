@@ -2,10 +2,6 @@ package com.BankApp;
 
 import java.util.Scanner;
 
-import com.BankApp.CustomExceptions.*;
-import com.BankApp.Doa.*;
-import com.BankApp.Models.*;
-
 public class Main {
 	final static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
@@ -16,16 +12,20 @@ public class Main {
 			System.out.println("1) Login");
 			System.out.println("2) Create Account");
 			System.out.println("3) Employee login");
+			System.out.println("4) Admin login");
 			String input = sc.nextLine();
 			switch(input) {
 			case "1":
-				customerLogin();
+				CustomerDriver.login();
 				break;
 			case "2":
-				createCustomer();
+				CustomerDriver.create();
 				break;
 			case "3":
-				employeeLogin();
+				EmployeeDriver.login();
+				break;
+			case "4":
+				AdminDriver.login();
 				break;
 			default:
 				System.out.println("Your input was incorrect");
@@ -35,99 +35,4 @@ public class Main {
 			continueApplication = sc.nextLine();
 		}
 	}
-	private static void customerLogin() {
-		CustomerDoa customerDoa = new CustomerDoa();
-		boolean isValid = false;
-		Customer c = null;
-		while(!isValid) {
-			isValid = true;
-			String username = getUsername();
-			String password = getPassword();
-			try {
-				c = customerDoa.selectCustomer(username, password);
-			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
-				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
-		}
-	}
-	private static void employeeLogin() {
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		boolean isValid = false;
-		Employee e = null;
-		while(!isValid) {
-			isValid = true;
-			String username = getUsername();
-			String password = getPassword();
-			try {
-				e = employeeDoa.selectEmployee(username, password);
-			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
-				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
-		}
-	}
-	private static void adminLogin() {
-		AdminDoa adminDoa = new AdminDoa();
-		boolean isValid = false;
-		Admin a = null;
-		while(!isValid) {
-			isValid = true;
-			String username = getUsername();
-			String password = getPassword();
-			try {
-				a = adminDoa.selectAdmin(username, password);
-			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
-				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
-		}
-	}
-	private static void createCustomer() {
-		String username = getUsername();
-		String password = createPassword();
-		boolean isSubmitted = false;
-		while(!isSubmitted) {
-			Customer c = new Customer(username, password);
-			CustomerDoa customerDoa = new CustomerDoa();
-			isSubmitted = customerDoa.submitApplication(c);
-			if(!isSubmitted) {
-				System.out.println("That username has been taken.");
-				System.out.print("Please enter a new username: ");
-				username = sc.nextLine();
-			}
-		}
-	}
-	private static String getUsername() {
-		System.out.print("Enter username: ");
-		return sc.nextLine();
-	}
-	private static String getPassword() {
-		System.out.print("Enter password: ");
-		return sc.nextLine();
-	}
-	private static String createPassword() {
-		String password1 = "p1";
-		String password2 = "p2";
-		while(!password1.equals(password2)) {
-			System.out.print("Enter password: ");
-			password1 = sc.nextLine();
-			System.out.print("Confirm pasword: ");
-			password2 = sc.nextLine();
-			if(!password1.equals(password2)) {
-				System.out.println("Passwords do not match. Try again.");
-			}
-		}
-		return password1;
-	}
-
 }
