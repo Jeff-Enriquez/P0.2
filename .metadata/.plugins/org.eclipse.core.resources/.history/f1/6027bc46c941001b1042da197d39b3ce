@@ -1,0 +1,14 @@
+package com.BankApp.Services;
+
+public class ExceptionFactory extends Exception {
+	public static Exception getException(String exceptionType) {
+		switch(exceptionType) {
+			case "password":
+				break;
+			case "username":
+				break;
+			default:
+				return new Exception();
+		}
+	}
+}

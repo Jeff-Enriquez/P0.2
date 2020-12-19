@@ -1,0 +1,7 @@
+package com.BankApp.CustomExceptions;
+
+public class Password extends Exception{
+	Password(String message){
+		super(message);
+	}
+}

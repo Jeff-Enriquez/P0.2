@@ -1,0 +1,7 @@
+package com.BankApp.CustomExceptions;
+
+public class UsernameException extends Exception{
+	Username(String message){
+		super(message);
+	}
+}

@@ -7,11 +7,10 @@ import java.sql.SQLException;
 
 import com.BankApp.Models.Employee;
 import com.BankApp.Util.ConnectionFactory;
-import com.BankApp.CustomExceptions.*;
 
 public class EmployeeDoa {
 	
-	public Employee selectEmployee(String username, String password) throws PasswordException{
+	public Employee selectEmployee(String username, String password){
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select password from employee where "
 				+ "username = ?;";
@@ -22,7 +21,7 @@ public class EmployeeDoa {
 			rs.next();
 			//throw exception if username does not exist
 			String confirmPassword = rs.getString("password");
-			throw new PasswordException();
+			//throw exception if passwords don't match
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
