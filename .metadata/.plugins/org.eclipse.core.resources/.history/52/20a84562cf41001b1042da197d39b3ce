@@ -35,25 +35,6 @@ public class Main {
 			continueApplication = sc.nextLine();
 		}
 	}
-	private static void customerLogin() {
-		CustomerDoa customerDoa = new CustomerDoa();
-		boolean isValid = false;
-		Customer c = null;
-		while(!isValid) {
-			isValid = true;
-			String username = getUsername();
-			String password = getPassword();
-			try {
-				c = customerDoa.selectCustomer(username, password);
-			} catch(PasswordMatchException exception) {
-				System.out.println("Password was incorrect, please input information again.");
-				isValid = false;
-			} catch(UsernameException exception) {
-				System.out.println("Username does not exist, please input information again.");
-				isValid = false;
-			}
-		}
-	}
 	private static void employeeLogin() {
 		EmployeeDoa employeeDoa = new EmployeeDoa();
 		boolean isValid = false;
@@ -73,16 +54,16 @@ public class Main {
 			}
 		}
 	}
-	private static void adminLogin() {
-		AdminDoa adminDoa = new AdminDoa();
+	private static void customerLogin() {
+		CustomerDoa customerDoa = new CustomerDoa();
 		boolean isValid = false;
-		Admin a = null;
+		Customer c = null;
 		while(!isValid) {
 			isValid = true;
 			String username = getUsername();
 			String password = getPassword();
 			try {
-				a = adminDoa.selectAdmin(username, password);
+				c = customerDoa.selectCustomer(username, password);
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;

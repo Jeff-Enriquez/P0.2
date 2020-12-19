@@ -9,6 +9,7 @@ import java.util.HashSet;
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Models.Customer;
+import com.BankApp.Models.Employee;
 import com.BankApp.Util.ConnectionFactory;
 
 public class CustomerDoa {
@@ -62,7 +63,7 @@ public class CustomerDoa {
 		}
 		return isValid && usernames.add(username);
 	}
-	public Customer selectCustomer(String username, String password) throws PasswordMatchException, UsernameException{
+	public Customer selectEmployee(String username, String password) throws PasswordMatchException, UsernameException{
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select password from customer where "
 				+ "username = ?;";

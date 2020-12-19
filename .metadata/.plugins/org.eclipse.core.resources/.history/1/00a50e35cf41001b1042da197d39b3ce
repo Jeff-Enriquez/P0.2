@@ -9,6 +9,7 @@ import java.util.HashSet;
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Models.Customer;
+import com.BankApp.Models.Employee;
 import com.BankApp.Util.ConnectionFactory;
 
 public class CustomerDoa {

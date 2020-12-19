@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 
-import com.BankApp.CustomExceptions.PasswordMatchException;
-import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Models.Customer;
 import com.BankApp.Util.ConnectionFactory;
 
@@ -62,39 +60,19 @@ public class CustomerDoa {
 		}
 		return isValid && usernames.add(username);
 	}
-	public Customer selectCustomer(String username, String password) throws PasswordMatchException, UsernameException{
+	
+	public void insertCustomer(Customer c) {
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select password from customer where "
-				+ "username = ?;";
+		String sql = "INSERT INTO cafe_customer (name, password, email, num_of_orders) values" 
+				+ "(?,?,?,0);";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				throw new UsernameException();
-			}
-			String confirmPassword = rs.getString("password");
-			if(!password.equals(confirmPassword)) {				
-				throw new PasswordMatchException();
-			}
-		} catch(SQLException e) {
+			ps.setString(1, c.username);
+			ps.setString(2, c.getPassword());
+			ps.execute();
+			conn.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return new Customer(username, password);
 	}
-	
-//	public void insertCustomer(Customer c) {
-//		Connection conn = ConnectionFactory.getConnection();
-//		String sql = "INSERT INTO cafe_customer (name, password, email, num_of_orders) values" 
-//				+ "(?,?,?,0);";
-//		try {
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ps.setString(1, c.username);
-//			ps.setString(2, c.getPassword());
-//			ps.execute();
-//			conn.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }
