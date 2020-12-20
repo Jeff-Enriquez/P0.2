@@ -46,16 +46,4 @@ public class AdminDoa {
 		}
 		
 	}
-	public void denyApplication(User user) {
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "delete from account_application where username = ?;";
-		try {			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user.username);
-			ps.execute();
-			ps.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }

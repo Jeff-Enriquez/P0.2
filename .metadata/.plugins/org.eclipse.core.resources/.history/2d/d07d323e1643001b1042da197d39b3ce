@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Models.Admin;
-import com.BankApp.Models.User;
 import com.BankApp.Util.ConnectionFactory;
 
 public class AdminDoa {
@@ -31,31 +30,5 @@ public class AdminDoa {
 			e.printStackTrace();
 		}
 		return new Admin(username, password);
-	}
-	public void approveCustomerApplication(User user) {
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "exec approveCustomerApplication(?,?)";
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user.username);			
-			ps.setString(2, user.getPassword());
-			ps.execute();
-			ps.close();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	public void denyApplication(User user) {
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "delete from account_application where username = ?;";
-		try {			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user.username);
-			ps.execute();
-			ps.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
 	}
 }

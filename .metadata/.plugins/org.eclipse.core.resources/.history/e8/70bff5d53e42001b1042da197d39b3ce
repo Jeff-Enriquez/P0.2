@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import com.BankApp.CustomExceptions.NoApplicationException;
 import com.BankApp.Models.User;
 import com.BankApp.Util.ConnectionFactory;
 
 public class AccountApplicationDoa {
 	
-	public User getApplication() {
+	public User getApplication() throws NoApplicationException {
 		User user = null;
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select top 1 * from account_application;";
@@ -22,6 +24,8 @@ public class AccountApplicationDoa {
 				String password = rs.getString("password");
 				String accountType = rs.getString("account_type");
 				user = new User(username, password, accountType);
+			} else {
+				throw new NoApplicationException();
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

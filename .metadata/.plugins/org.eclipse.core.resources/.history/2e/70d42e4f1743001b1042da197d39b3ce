@@ -78,8 +78,7 @@ public class AdminDriver extends Driver{
 			if(input.equals("1")) {
 				approveApplication(user);
 			} else if(input.equals("2")) {
-				AdminDoa adminDoa = new AdminDoa();
-				adminDoa.denyApplication(user);
+				denyApplication(user);
 			} else {
 				System.out.println("Invalid input");
 			}
@@ -91,5 +90,10 @@ public class AdminDriver extends Driver{
 			AdminDoa adminDoa = new AdminDoa();
 			adminDoa.approveCustomerApplication(user);
 		}
+	}
+	
+	private static void denyApplication(User user) {
+		AdminDoa adminDoa = new AdminDoa();
+		adminDoa.denyApplication(user);
 	}
 }

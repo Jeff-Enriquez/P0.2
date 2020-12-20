@@ -10,7 +10,7 @@ public class User {
 		this.setPassword(password);
 	}
 	
-	public User(String username, String password, String accountType){
+	User(String username, String password, String accountType){
 		this.username = username;
 		this.setPassword(password);
 		this.accountType = accountType;

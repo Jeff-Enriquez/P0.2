@@ -1,0 +1,7 @@
+package com.BankApp.CustomExceptions;
+
+public class NoApplicationException extends Exception{
+	public NoApplicationException(){
+		super("No pending application was found");
+	}
+}

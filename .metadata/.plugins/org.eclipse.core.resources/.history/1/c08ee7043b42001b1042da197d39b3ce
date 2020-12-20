@@ -1,0 +1,15 @@
+package com.BankApp.Doa;
+
+import java.sql.Connection;
+
+import com.BankApp.Models.User;
+import com.BankApp.Util.ConnectionFactory;
+
+public class AccountApplicationDoa {
+	
+	public User getApplication() {
+		User user = null;
+		Connection conn = ConnectionFactory.getConnection();
+		return user;
+	}
+}

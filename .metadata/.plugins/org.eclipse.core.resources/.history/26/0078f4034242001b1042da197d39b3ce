@@ -37,7 +37,7 @@ public class CustomerDoa {
 	private boolean isNameValid(String username) {
 		Connection conn = ConnectionFactory.getConnection();
 		boolean isValid = true;
-		String sql = "select * from customerNames;";
+		String sql = "select username from account_application where account_type = 'customer';";
 		HashSet<String> usernames = new HashSet<String>();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -45,6 +45,18 @@ public class CustomerDoa {
 			while(rs.next()) {	
 				usernames.add(rs.getString("username"));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			isValid = false;
+		}
+		sql = "select username from customer;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {	
+				usernames.add(rs.getString("username"));
+			}
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			isValid = false;
