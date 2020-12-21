@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.BankApp.CustomExceptions.PasswordMatchException;
-import com.BankApp.CustomExceptions.UsernameException;
+import com.BankApp.CustomExceptions.*;
 import com.BankApp.Models.Admin;
 import com.BankApp.Models.User;
 import com.BankApp.Util.ConnectionFactory;
@@ -75,5 +74,90 @@ public class AdminDoa {
 			e.printStackTrace();
 		}
 		
+	}
+	public void cancelAccount(int account) throws AccountException {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "delete from account where number = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, account);
+			int i = ps.executeUpdate();
+			ps.close();
+			if(i == 0) {
+				throw new AccountException();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public Double[] transfer(int account1, int account2, Double cash) throws AccountException, OverdrawException, NegativeCashException {
+		Double[] balance = {null, null};
+		if(cash <= 0) {
+			throw new NegativeCashException();
+		}
+		balance[0] = getBalance(account1);
+		if(cash > balance[0]) {
+			throw new OverdrawException();
+		}
+		balance[1] = getBalance(account2);
+		balance[0] -= cash;
+		balance[1] += cash;
+		updateBalance(account1, balance[0]);
+		updateBalance(account2, balance[1]);
+		return balance;
+		
+	}
+	public Double withdraw(int account, Double cash) throws AccountException, OverdrawException, NegativeCashException {
+		if(cash <= 0) {
+			throw new NegativeCashException();
+		}
+		Double balance = getBalance(account);
+		if(cash > balance) {
+			throw new OverdrawException();
+		}
+		balance -= cash;
+		updateBalance(account, balance);
+		return balance;
+	}
+	public Double deposit(int account, Double cash) throws AccountException, NegativeCashException {
+		if(cash <= 0) {
+			throw new NegativeCashException();
+		}
+		Double balance = getBalance(account) + cash;
+		updateBalance(account, balance);
+		return balance;
+	}
+	
+	private void updateBalance(int account, Double balance) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "update account set balance = " + balance + " where number = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, account);
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private Double getBalance(int account) throws AccountException {
+		Double balance = null;
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "select balance from account where number = ?;";
+		try {			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, account);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				balance = rs.getDouble("balance");
+			} else {
+				throw new AccountException();
+			}
+			ps.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return balance;
 	}
 }

@@ -1,0 +1,7 @@
+package com.BankApp.CustomExceptions;
+
+public class OverdrawException extends Exception{
+	OverdrawException(){
+		super("The account does not have sufficient funds to make withdrawal");
+	}
+}

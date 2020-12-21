@@ -2,8 +2,7 @@ package com.BankApp;
 
 import java.util.Scanner;
 
-import com.BankApp.CustomExceptions.PasswordMatchException;
-import com.BankApp.CustomExceptions.UsernameException;
+import com.BankApp.CustomExceptions.*;
 import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
 import com.BankApp.Models.User;
@@ -43,29 +42,111 @@ public class AdminDriver extends Driver{
 		System.out.println("3) Deposit to an account");
 		System.out.println("4) Transfer between two accounts");
 		System.out.println("5) Cancel an account");
-		System.out.println("6) View all accounts");
+		System.out.println("6) Remove customer");
+//		System.out.println("7) View all accounts");
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
 				processAccount();
 				break;
 			case "2":
+				withdraw();
 				break;
 			case "3":
+				deposit();
 				break;
 			case "4":
+				transfer();
 				break;
 			case "5":
-				deleteAccount();
+				cancelAccount();
 				break;
 			case "6":
+				removeCustomer();
+				break;
+			case "7":
 				break;
 			default:
 				System.out.println("Invalid input");
 		}
 	}
+	private static void cancelAccount() {
+		System.out.print("Enter the account you would like to cancel: ");
+		int account = sc.nextInt();
+		sc.nextLine();
+		AdminDoa adminDoa = new AdminDoa();
+		try {
+			adminDoa.cancelAccount(account);
+		} catch (AccountException e) {
+			System.out.println("The account does not exist");
+		}
+	}
+	private static void transfer() {
+		System.out.print("Enter the account you would like to transfer FROM: ");
+		int account1 = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Enter the account you would like to transfer TO: ");
+		int account2 = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Enter the cash amount: ");
+		Double cash = sc.nextDouble();
+		sc.nextLine();
+		AdminDoa adminDoa = new AdminDoa();
+		try {			
+			Double[] balance = adminDoa.transfer(account1, account2, cash);
+			System.out.println(cash + " has been transferred from " + account1 + " to account " + account2);
+			System.out.println("The new balance for " + account1 + " is: " + balance[0]);
+			System.out.println("The new balance for " + account2 + " is: " + balance[1]);
+		} catch (AccountException e) {
+			System.out.println("The account does not exist.");
+		} catch (NegativeCashException e) {
+			System.out.println("The withdrawal value cannot be negative");
+		} catch (OverdrawException e) {
+			System.out.println(account1 + " does not have enough funds to make the transfer.");
+		}
+	}
 	
-	private static void deleteAccount() {
+	private static void deposit() {
+		System.out.print("Enter the account you would like to deposit to: ");
+		int account = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Enter the cash amount: ");
+		Double cash = sc.nextDouble();
+		sc.nextLine();
+		AdminDoa adminDoa = new AdminDoa();
+		try {			
+			Double balance = adminDoa.deposit(account, cash);
+			System.out.println(cash + " has been deposited to account: " + account);
+			System.out.println("The new balance is: " + balance);
+		} catch (AccountException e) {
+			System.out.println("The account does not exist.");
+		} catch (NegativeCashException e) {
+			System.out.println("The withdrawal value cannot be negative");
+		}
+	}
+	
+	private static void withdraw() {
+		System.out.print("Enter the account you would like to withdraw from: ");
+		int account = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Enter the cash amount: ");
+		Double cash = sc.nextDouble();
+		sc.nextLine();
+		AdminDoa adminDoa = new AdminDoa();
+		try {			
+			Double balance = adminDoa.withdraw(account, cash);
+			System.out.println(cash + " has been withdrawn from account: " + account);
+			System.out.println("The new balance is: " + balance);
+		} catch (AccountException e) {
+			System.out.println("The account does not exist.");
+		} catch (OverdrawException e) {
+			System.out.println("The account does not have enough funds to make the withdrawal");
+		} catch (NegativeCashException e) {
+			System.out.println("The withdrawal value cannot be negative");
+		}
+	}
+	
+	private static void removeCustomer() {
 		String input;
 		System.out.print("Enter the customer username you would like to remove: ");
 		input = sc.nextLine();

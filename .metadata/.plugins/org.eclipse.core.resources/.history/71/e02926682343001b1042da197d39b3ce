@@ -1,0 +1,5 @@
+package com.BankApp.CustomExceptions;
+
+public class AccountException {
+
+}
