@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.BankApp.CustomExceptions.*;
 import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
-import com.BankApp.Doa.CustomerDoa;
 import com.BankApp.Models.User;
 
 public class AdminDriver extends Driver{
@@ -92,9 +91,9 @@ public class AdminDriver extends Driver{
 		System.out.print("Enter the cash amount: ");
 		Double cash = sc.nextDouble();
 		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
+		AdminDoa adminDoa = new AdminDoa();
 		try {			
-			Double[] balance = customerDoa.transfer(account1, account2, cash);
+			Double[] balance = adminDoa.transfer(account1, account2, cash);
 			System.out.println(cash + " has been transferred from " + account1 + " to account " + account2);
 			System.out.println("The new balance for " + account1 + " is: " + balance[0]);
 			System.out.println("The new balance for " + account2 + " is: " + balance[1]);
@@ -114,9 +113,9 @@ public class AdminDriver extends Driver{
 		System.out.print("Enter the cash amount: ");
 		Double cash = sc.nextDouble();
 		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
+		AdminDoa adminDoa = new AdminDoa();
 		try {			
-			Double balance = customerDoa.deposit(account, cash);
+			Double balance = adminDoa.deposit(account, cash);
 			System.out.println(cash + " has been deposited to account: " + account);
 			System.out.println("The new balance is: " + balance);
 		} catch (AccountException e) {
@@ -133,9 +132,9 @@ public class AdminDriver extends Driver{
 		System.out.print("Enter the cash amount: ");
 		Double cash = sc.nextDouble();
 		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
+		AdminDoa adminDoa = new AdminDoa();
 		try {			
-			Double balance = customerDoa.withdraw(account, cash);
+			Double balance = adminDoa.withdraw(account, cash);
 			System.out.println(cash + " has been withdrawn from account: " + account);
 			System.out.println("The new balance is: " + balance);
 		} catch (AccountException e) {

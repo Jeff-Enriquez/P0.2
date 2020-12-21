@@ -1,11 +1,7 @@
 package com.BankApp;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
-import com.BankApp.CustomExceptions.AccountException;
-import com.BankApp.CustomExceptions.NegativeCashException;
-import com.BankApp.CustomExceptions.OverdrawException;
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Doa.CustomerDoa;
@@ -25,7 +21,6 @@ public class CustomerDriver extends Driver{
 			String password = getPassword();
 			try {
 				currentCustomer = customerDoa.selectCustomer(username, password);
-				currentCustomer.setAccounts(customerDoa.getAccounts(currentCustomer.username));
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;
@@ -54,11 +49,7 @@ public class CustomerDriver extends Driver{
 			case "1":
 				break;
 			case "2":
-				if(currentCustomer.getAccounts().size() != 0){
-					withdraw();
-				} else {
-					System.out.println("Sorry, you do not have any accounts");
-				}
+				withdraw();
 				break;
 			case "3":
 				break;
@@ -72,28 +63,7 @@ public class CustomerDriver extends Driver{
 	}
 	
 	private static void withdraw() {
-		System.out.print("Which account would you like to withdraw from?");
-		currentCustomer.getAccounts().forEach((account, balance) -> {
-			System.out.println("\tAccount: " + account + " Balance: " + balance);
-		});
-		System.out.println("Enter account number: ");
-		int account = sc.nextInt();
-		sc.nextLine();
-		System.out.print("Enter the cash amount: ");
-		Double cash = sc.nextDouble();
-		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
-		try {			
-			Double balance = customerDoa.withdraw(account, cash);
-			System.out.println(cash + " has been withdrawn from account: " + account);
-			System.out.println("The new balance is: " + balance);
-		} catch (AccountException e) {
-			System.out.println("The account does not exist.");
-		} catch (OverdrawException e) {
-			System.out.println("The account does not have enough funds to make the withdrawal");
-		} catch (NegativeCashException e) {
-			System.out.println("The withdrawal value cannot be negative");
-		}
+		
 	}
 	
 	public static void create() {

@@ -126,27 +126,27 @@ public class AdminDriver extends Driver{
 		}
 	}
 	
-	private static void withdraw() {
-		System.out.print("Enter the account you would like to withdraw from: ");
-		int account = sc.nextInt();
-		sc.nextLine();
-		System.out.print("Enter the cash amount: ");
-		Double cash = sc.nextDouble();
-		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
-		try {			
-			Double balance = customerDoa.withdraw(account, cash);
-			System.out.println(cash + " has been withdrawn from account: " + account);
-			System.out.println("The new balance is: " + balance);
-		} catch (AccountException e) {
-			System.out.println("The account does not exist.");
-		} catch (OverdrawException e) {
-			System.out.println("The account does not have enough funds to make the withdrawal");
-		} catch (NegativeCashException e) {
-			System.out.println("The withdrawal value cannot be negative");
-		}
-	}
-	
+//	private static void withdraw() {
+//		System.out.print("Enter the account you would like to withdraw from: ");
+//		int account = sc.nextInt();
+//		sc.nextLine();
+//		System.out.print("Enter the cash amount: ");
+//		Double cash = sc.nextDouble();
+//		sc.nextLine();
+//		CustomerDoa customerDoa = new CustomerDoa();
+//		try {			
+//			Double balance = customerDoa.withdraw(account, cash);
+//			System.out.println(cash + " has been withdrawn from account: " + account);
+//			System.out.println("The new balance is: " + balance);
+//		} catch (AccountException e) {
+//			System.out.println("The account does not exist.");
+//		} catch (OverdrawException e) {
+//			System.out.println("The account does not have enough funds to make the withdrawal");
+//		} catch (NegativeCashException e) {
+//			System.out.println("The withdrawal value cannot be negative");
+//		}
+//	}
+//	
 	private static void removeCustomer() {
 		String input;
 		System.out.print("Enter the customer username you would like to remove: ");

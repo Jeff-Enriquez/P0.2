@@ -56,8 +56,6 @@ public class CustomerDriver extends Driver{
 			case "2":
 				if(currentCustomer.getAccounts().size() != 0){
 					withdraw();
-				} else {
-					System.out.println("Sorry, you do not have any accounts");
 				}
 				break;
 			case "3":

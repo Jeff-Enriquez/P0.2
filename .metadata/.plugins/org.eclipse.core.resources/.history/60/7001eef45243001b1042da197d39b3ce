@@ -48,16 +48,11 @@ public class EmployeeDoa {
 		try {			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			String username, password;
-			Customer c;
-			CustomerDoa customerDoa = new CustomerDoa();
-			HashMap<Integer, Double> accounts;
 			while(rs.next()) {
-				username = rs.getString("username");
-				password = rs.getString("password");
-				c = new Customer(username, password);
-				accounts = customerDoa.getAccounts(username);
-				c.setAccounts(accounts);
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				Customer c = new Customer(username, password);
+				c.setAccounts(getAccounts(username));
 				customers.add(c);
 			}
 		} catch(SQLException e) {

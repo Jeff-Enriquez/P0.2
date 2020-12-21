@@ -92,9 +92,9 @@ public class AdminDriver extends Driver{
 		System.out.print("Enter the cash amount: ");
 		Double cash = sc.nextDouble();
 		sc.nextLine();
-		CustomerDoa customerDoa = new CustomerDoa();
+		AdminDoa adminDoa = new AdminDoa();
 		try {			
-			Double[] balance = customerDoa.transfer(account1, account2, cash);
+			Double[] balance = adminDoa.transfer(account1, account2, cash);
 			System.out.println(cash + " has been transferred from " + account1 + " to account " + account2);
 			System.out.println("The new balance for " + account1 + " is: " + balance[0]);
 			System.out.println("The new balance for " + account2 + " is: " + balance[1]);

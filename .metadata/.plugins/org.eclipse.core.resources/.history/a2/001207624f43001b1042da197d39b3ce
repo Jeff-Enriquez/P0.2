@@ -90,5 +90,61 @@ public class AdminDoa {
 			e.printStackTrace();
 		}
 	}
+	public Double[] transfer(int account1, int account2, Double cash) throws AccountException, OverdrawException, NegativeCashException {
+		Double[] balance = {null, null};
+		if(cash <= 0) {
+			throw new NegativeCashException();
+		}
+		balance[0] = getBalance(account1);
+		if(cash > balance[0]) {
+			throw new OverdrawException();
+		}
+		balance[1] = getBalance(account2);
+		balance[0] -= cash;
+		balance[1] += cash;
+		updateBalance(account1, balance[0]);
+		updateBalance(account2, balance[1]);
+		return balance;
+	}
+	public Double deposit(int account, Double cash) throws AccountException, NegativeCashException {
+		if(cash <= 0) {
+			throw new NegativeCashException();
+		}
+		Double balance = getBalance(account) + cash;
+		updateBalance(account, balance);
+		return balance;
+	}
 	
+	private void updateBalance(int account, Double balance) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "update account set balance = " + balance + " where number = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, account);
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private Double getBalance(int account) throws AccountException {
+		Double balance = null;
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "select balance from account where number = ?;";
+		try {			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, account);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				balance = rs.getDouble("balance");
+			} else {
+				throw new AccountException();
+			}
+			ps.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return balance;
+	}
 }

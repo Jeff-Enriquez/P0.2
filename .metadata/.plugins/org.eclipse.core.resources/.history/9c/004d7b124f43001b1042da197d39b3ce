@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import com.BankApp.CustomExceptions.AccountException;
@@ -37,23 +36,6 @@ public class CustomerDoa {
 			}
 		}
 		return isSubmitted;
-	}
-	
-	public HashMap<Integer, Double> getAccounts(String username) {
-		HashMap<Integer, Double> accounts = new HashMap<Integer, Double>();
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from account where customer = ?;";
-		try {			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				accounts.put(rs.getInt("number"), rs.getDouble("balance"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return accounts;
 	}
 	
 	public boolean isNameInDB(String username) {
@@ -93,22 +75,7 @@ public class CustomerDoa {
 		}
 		return new Customer(username, password);
 	}
-	public Double[] transfer(int account1, int account2, Double cash) throws AccountException, OverdrawException, NegativeCashException {
-		Double[] balance = {null, null};
-		if(cash <= 0) {
-			throw new NegativeCashException();
-		}
-		balance[0] = getBalance(account1);
-		if(cash > balance[0]) {
-			throw new OverdrawException();
-		}
-		balance[1] = getBalance(account2);
-		balance[0] -= cash;
-		balance[1] += cash;
-		updateBalance(account1, balance[0]);
-		updateBalance(account2, balance[1]);
-		return balance;
-	}
+	
 	public Double withdraw(int account, Double cash) throws AccountException, OverdrawException, NegativeCashException {
 		if(cash <= 0) {
 			throw new NegativeCashException();
@@ -160,6 +127,21 @@ public class CustomerDoa {
 			e.printStackTrace();
 		}
 		return balance;
+	}
+	
+	public void insertCustomer(User c) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "INSERT INTO customer values " 
+				+ "(?,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, c.username);
+			ps.setString(2, c.getPassword());
+			ps.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

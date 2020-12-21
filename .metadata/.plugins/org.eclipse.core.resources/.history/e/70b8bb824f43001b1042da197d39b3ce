@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import com.BankApp.CustomExceptions.AccountException;
@@ -37,23 +36,6 @@ public class CustomerDoa {
 			}
 		}
 		return isSubmitted;
-	}
-	
-	public HashMap<Integer, Double> getAccounts(String username) {
-		HashMap<Integer, Double> accounts = new HashMap<Integer, Double>();
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from account where customer = ?;";
-		try {			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				accounts.put(rs.getInt("number"), rs.getDouble("balance"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return accounts;
 	}
 	
 	public boolean isNameInDB(String username) {
@@ -109,18 +91,6 @@ public class CustomerDoa {
 		updateBalance(account2, balance[1]);
 		return balance;
 	}
-	public Double withdraw(int account, Double cash) throws AccountException, OverdrawException, NegativeCashException {
-		if(cash <= 0) {
-			throw new NegativeCashException();
-		}
-		Double balance = getBalance(account);
-		if(cash > balance) {
-			throw new OverdrawException();
-		}
-		balance -= cash;
-		updateBalance(account, balance);
-		return balance;
-	}
 	public Double deposit(int account, Double cash) throws AccountException, NegativeCashException {
 		if(cash <= 0) {
 			throw new NegativeCashException();
@@ -129,6 +99,7 @@ public class CustomerDoa {
 		updateBalance(account, balance);
 		return balance;
 	}
+	
 	private void updateBalance(int account, Double balance) {
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "update account set balance = " + balance + " where number = ?;";
@@ -160,6 +131,21 @@ public class CustomerDoa {
 			e.printStackTrace();
 		}
 		return balance;
+	}
+	
+	public void insertCustomer(User c) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "INSERT INTO customer values " 
+				+ "(?,?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, c.username);
+			ps.setString(2, c.getPassword());
+			ps.execute();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

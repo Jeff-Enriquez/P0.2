@@ -1,6 +1,5 @@
 package com.BankApp;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.AccountException;
@@ -25,7 +24,7 @@ public class CustomerDriver extends Driver{
 			String password = getPassword();
 			try {
 				currentCustomer = customerDoa.selectCustomer(username, password);
-				currentCustomer.setAccounts(customerDoa.getAccounts(currentCustomer.username));
+				currentCustomer.setAccounts(currentCustomer.username);
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;
@@ -54,11 +53,7 @@ public class CustomerDriver extends Driver{
 			case "1":
 				break;
 			case "2":
-				if(currentCustomer.getAccounts().size() != 0){
-					withdraw();
-				} else {
-					System.out.println("Sorry, you do not have any accounts");
-				}
+				withdraw();
 				break;
 			case "3":
 				break;
@@ -72,11 +67,8 @@ public class CustomerDriver extends Driver{
 	}
 	
 	private static void withdraw() {
-		System.out.print("Which account would you like to withdraw from?");
-		currentCustomer.getAccounts().forEach((account, balance) -> {
-			System.out.println("\tAccount: " + account + " Balance: " + balance);
-		});
-		System.out.println("Enter account number: ");
+		
+		System.out.print("Enter the account you would like to withdraw from: ");
 		int account = sc.nextInt();
 		sc.nextLine();
 		System.out.print("Enter the cash amount: ");
