@@ -82,7 +82,7 @@ public class CustomerDriver extends Driver{
 	}
 	private static void transfer() {
 		CustomerDoa customerDoa = new CustomerDoa();
-		System.out.println("Which account would you like to transfer from?");
+		System.out.print("Which account would you like to transfer from?");
 		currentCustomer.getAccounts().forEach((account, balance) -> {
 			System.out.println("\tAccount: " + account + " Balance: " + balance);
 		});

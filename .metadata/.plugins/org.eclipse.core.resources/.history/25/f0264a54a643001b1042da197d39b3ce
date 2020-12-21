@@ -1,7 +1,5 @@
 package com.BankApp;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.AccountException;
@@ -68,65 +66,11 @@ public class CustomerDriver extends Driver{
 				}
 				break;
 			case "4":
-				if(currentCustomer.getAccounts().size() > 0){
-					transfer();
-				} else {
-					System.out.println("Sorry, you do not have any accounts");
-				}
 				break;
 			case "5":
 				break;
 			default:
 				System.out.println("Invalid input");
-		}
-	}
-	private static void transfer() {
-		CustomerDoa customerDoa = new CustomerDoa();
-		System.out.println("Which account would you like to transfer from?");
-		currentCustomer.getAccounts().forEach((account, balance) -> {
-			System.out.println("\tAccount: " + account + " Balance: " + balance);
-		});
-		int account1 = sc.nextInt();
-		sc.nextLine();
-		if(!currentCustomer.getAccounts().containsKey(account1)) {
-			System.out.println("You can only transfer from your own account");
-			return;
-		}
-		System.out.println("Which account would you like to transfer to?");
-		System.out.println("1) To view all accounts");
-		System.out.println("2) To enter account number");
-		String input = sc.nextLine();
-		if(input.equals("1")) {
-			HashMap<String, ArrayList<Integer>> customers = customerDoa.getAllAccounts();
-			System.out.println("Accounts: ");
-			customers.forEach((name, accounts) -> {
-				System.out.print("\t"+name+": ");
-				if(accounts.size() > 0) {					
-					accounts.forEach(account -> {
-						System.out.print(account + " ");
-					});
-				} else {
-					System.out.print(" no accounts");
-				}
-				System.out.println("");
-			});
-		}
-		System.out.println("Enter account number: ");
-		int account2 = sc.nextInt();
-		sc.nextLine();
-		System.out.print("Enter the cash amount: ");
-		Double cash = sc.nextDouble();
-		sc.nextLine();
-		try {			
-			Double[] balance = customerDoa.transfer(account1, account2, cash);
-			System.out.println(cash + " has been transferred from your account: " + account1 + " to account: " + account2);
-			System.out.println("The new balance for your account: " + account1 + " is: " + balance[0]);
-		} catch (AccountException e) {
-			System.out.println("The account you are transferring to does not exist.");
-		} catch (OverdrawException e) {
-			System.out.println("Your account does not have enough funds to make the transfer");
-		} catch (NegativeCashException e) {
-			System.out.println("The withdrawal value cannot be negative");
 		}
 	}
 	private static void deposit() {

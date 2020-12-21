@@ -67,15 +67,12 @@ public class CustomerDoa {
 			while(rs.next()) {
 				Integer number = rs.getInt("number");
 				String customer = rs.getString("customer");
-				ArrayList<Integer> accounts = null;
+				ArrayList<Integer> accounts = new ArrayList<Integer>();
 				if(!customers.containsKey(customer)) {
-					accounts = new ArrayList<Integer>();
 					accounts.add(number);
 					customers.put(customer, accounts);
 				} else {
-					accounts = customers.get(customer);
-					accounts.add(number);
-					customers.put(customer, accounts);
+					
 				}
 			}
 		} catch (SQLException e) {

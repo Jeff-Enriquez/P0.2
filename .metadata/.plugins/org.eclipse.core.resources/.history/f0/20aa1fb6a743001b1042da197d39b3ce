@@ -1,7 +1,6 @@
 package com.BankApp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.AccountException;
@@ -82,7 +81,7 @@ public class CustomerDriver extends Driver{
 	}
 	private static void transfer() {
 		CustomerDoa customerDoa = new CustomerDoa();
-		System.out.println("Which account would you like to transfer from?");
+		System.out.print("Which account would you like to transfer from?");
 		currentCustomer.getAccounts().forEach((account, balance) -> {
 			System.out.println("\tAccount: " + account + " Balance: " + balance);
 		});
@@ -97,18 +96,10 @@ public class CustomerDriver extends Driver{
 		System.out.println("2) To enter account number");
 		String input = sc.nextLine();
 		if(input.equals("1")) {
-			HashMap<String, ArrayList<Integer>> customers = customerDoa.getAllAccounts();
+			ArrayList<Integer> accounts = customerDoa.getAllAccounts();
 			System.out.println("Accounts: ");
-			customers.forEach((name, accounts) -> {
-				System.out.print("\t"+name+": ");
-				if(accounts.size() > 0) {					
-					accounts.forEach(account -> {
-						System.out.print(account + " ");
-					});
-				} else {
-					System.out.print(" no accounts");
-				}
-				System.out.println("");
+			accounts.forEach(account -> {
+				System.out.println("\t"+account);
 			});
 		}
 		System.out.println("Enter account number: ");

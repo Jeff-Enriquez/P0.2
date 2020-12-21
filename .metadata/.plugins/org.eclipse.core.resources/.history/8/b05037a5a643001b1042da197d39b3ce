@@ -15,6 +15,7 @@ import com.BankApp.CustomExceptions.OverdrawException;
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Models.Customer;
+import com.BankApp.Models.User;
 import com.BankApp.Util.ConnectionFactory;
 
 public class CustomerDoa {
@@ -57,31 +58,20 @@ public class CustomerDoa {
 		return accounts;
 	}
 	
-	public HashMap<String, ArrayList<Integer>> getAllAccounts(){
-		HashMap<String, ArrayList<Integer>> customers = new HashMap<String, ArrayList<Integer>>();
+	public static ArrayList<Integer> getAllAccounts(){
+		ArrayList<Integer> accounts = new ArrayList<Integer>();
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from account";
+		String sql = "select * from account;";
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
-				Integer number = rs.getInt("number");
-				String customer = rs.getString("customer");
-				ArrayList<Integer> accounts = null;
-				if(!customers.containsKey(customer)) {
-					accounts = new ArrayList<Integer>();
-					accounts.add(number);
-					customers.put(customer, accounts);
-				} else {
-					accounts = customers.get(customer);
-					accounts.add(number);
-					customers.put(customer, accounts);
-				}
+				accounts.add(rs.getInt("number"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return customers;
+		return accounts;
 	}
 	
 	public boolean isNameInDB(String username) {

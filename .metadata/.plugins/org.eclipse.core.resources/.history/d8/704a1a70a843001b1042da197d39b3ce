@@ -57,25 +57,20 @@ public class CustomerDoa {
 		return accounts;
 	}
 	
-	public HashMap<String, ArrayList<Integer>> getAllAccounts(){
-		HashMap<String, ArrayList<Integer>> customers = new HashMap<String, ArrayList<Integer>>();
+	public HashMap<Integer, ArrayList> getAllAccounts(){
+		HashMap<Integer, ArrayList> customers = new HashMap<Integer, ArrayList>();
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select * from account";
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			while(rs.next()) {
-				Integer number = rs.getInt("number");
-				String customer = rs.getString("customer");
-				ArrayList<Integer> accounts = null;
+				Integer account = rs.getInt("number");
+				String customer = rs.getInt("customer");
 				if(!customers.containsKey(customer)) {
-					accounts = new ArrayList<Integer>();
-					accounts.add(number);
-					customers.put(customer, accounts);
+					customers.put(customer, {account});
 				} else {
-					accounts = customers.get(customer);
-					accounts.add(number);
-					customers.put(customer, accounts);
+					
 				}
 			}
 		} catch (SQLException e) {
