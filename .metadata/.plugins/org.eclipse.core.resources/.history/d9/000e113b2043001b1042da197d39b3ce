@@ -58,12 +58,7 @@ public class AdminDoa {
 			e.printStackTrace();
 		}
 	}
-	public void deleteCustomer(String username) throws UsernameException {
-		CustomerDoa customerDoa = new CustomerDoa();
-		boolean isNameInDB = customerDoa.isNameInDB(username);
-		if(!isNameInDB) {
-			throw new UsernameException();
-		}
+	public void deleteCustomer(String username) {
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "delete from customer where username = ?;";
 		try {

@@ -13,7 +13,7 @@ public class AccountApplicationDoa {
 	public User getApplication() {
 		User user = null;
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from account_application limit 1;";
+		String sql = "select top 1 * from account_application;";
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
@@ -32,12 +32,12 @@ public class AccountApplicationDoa {
 	public Integer applicationCount() {
 		Integer count = 0;
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select count(*) as total from account_application";
+		String sql = "select count(*) from account_application";
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			rs.next();
-			count = rs.getInt("total");
+			count = rs.getInt("count(*)");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

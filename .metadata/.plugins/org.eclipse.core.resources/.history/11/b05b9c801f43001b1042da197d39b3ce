@@ -48,7 +48,7 @@ public class AdminDoa {
 	}
 	public void denyApplication(User user) {
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "delete from account_application where username = ?;";
+		String sql = "delete * from account_application where username = ?;";
 		try {			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user.username);
@@ -58,14 +58,9 @@ public class AdminDoa {
 			e.printStackTrace();
 		}
 	}
-	public void deleteCustomer(String username) throws UsernameException {
-		CustomerDoa customerDoa = new CustomerDoa();
-		boolean isNameInDB = customerDoa.isNameInDB(username);
-		if(!isNameInDB) {
-			throw new UsernameException();
-		}
+	public void deleteCustomer(String username) {
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "delete from customer where username = ?;";
+		String sql = "delete * from customer where username = ?;";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);

@@ -66,16 +66,9 @@ public class AdminDriver extends Driver{
 	}
 	
 	private static void deleteAccount() {
-		String input;
-		System.out.print("Enter the customer username you would like to remove: ");
-		input = sc.nextLine();
-		AdminDoa adminDoa = new AdminDoa();
-		try {			
-			adminDoa.deleteCustomer(input);
-			System.out.println("Customer: " + input + " has been removed.");
-		} catch (UsernameException e) {
-			System.out.println("The username does not exist.");
-		}
+		String input = 
+		System.out.print("Enter the customer username you would like to delete: ");
+		
 	}
 	
 	private static void processAccount() {

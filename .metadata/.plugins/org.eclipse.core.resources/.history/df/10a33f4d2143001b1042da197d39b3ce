@@ -46,10 +46,10 @@ public class CustomerDoa {
 			while(rs.next()) {	
 				usernames.add(rs.getString("username"));
 			}
-			isInDB = !usernames.add(username);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		isInDB = !usernames.add(username);
 		return isInDB;
 	}
 	public Customer selectCustomer(String username, String password) throws PasswordMatchException, UsernameException{

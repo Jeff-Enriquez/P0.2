@@ -6,6 +6,8 @@ import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
+import com.BankApp.Doa.CustomerDoa;
+import com.BankApp.Models.Admin;
 import com.BankApp.Models.User;
 
 public class AdminDriver extends Driver{
@@ -14,12 +16,13 @@ public class AdminDriver extends Driver{
 	public static void login() {
 		AdminDoa adminDoa = new AdminDoa();
 		boolean isValid = false;
+		Admin a = null;
 		while(!isValid) {
 			isValid = true;
 			String username = getUsername();
 			String password = getPassword();
 			try {
-				adminDoa.selectAdmin(username, password);
+				a = adminDoa.selectAdmin(username, password);
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;
@@ -32,7 +35,6 @@ public class AdminDriver extends Driver{
 		while(input.equals("YES")) {			
 			adminActions();
 			System.out.print("Enter 'YES' to request another action: ");
-			input = sc.nextLine();
 		}
 	}
 	
@@ -43,7 +45,6 @@ public class AdminDriver extends Driver{
 		System.out.println("3) Deposit to an account");
 		System.out.println("4) Transfer between two accounts");
 		System.out.println("5) Cancel an account");
-		System.out.println("6) View all accounts");
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
@@ -56,25 +57,9 @@ public class AdminDriver extends Driver{
 			case "4":
 				break;
 			case "5":
-				deleteAccount();
-				break;
-			case "6":
 				break;
 			default:
 				System.out.println("Invalid input");
-		}
-	}
-	
-	private static void deleteAccount() {
-		String input;
-		System.out.print("Enter the customer username you would like to remove: ");
-		input = sc.nextLine();
-		AdminDoa adminDoa = new AdminDoa();
-		try {			
-			adminDoa.deleteCustomer(input);
-			System.out.println("Customer: " + input + " has been removed.");
-		} catch (UsernameException e) {
-			System.out.println("The username does not exist.");
 		}
 	}
 	
@@ -82,6 +67,7 @@ public class AdminDriver extends Driver{
 		Scanner sc = new Scanner(System.in);
 		String input;
 		AccountApplicationDoa accAppDoa = new AccountApplicationDoa();
+		CustomerDoa customerDoa = new CustomerDoa();
 		System.out.println("There are currently " + accAppDoa.applicationCount() + " pending.");
 		User user = accAppDoa.getApplication();
 		if(user != null) {			

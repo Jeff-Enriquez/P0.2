@@ -15,9 +15,8 @@ import com.BankApp.Util.ConnectionFactory;
 public class CustomerDoa {
 	
 	public boolean submitApplication(Customer c) {
-		boolean isSubmitted = false;
-		boolean isInDB = isNameInDB(c.username);
-		if(!isInDB) {			
+		boolean isSubmitted = isNameValid(c.username);
+		if(isSubmitted) {			
 			Connection conn = ConnectionFactory.getConnection();
 			String sql = "INSERT INTO account_application values" 
 					+ "(?,?,'customer');";
@@ -27,17 +26,17 @@ public class CustomerDoa {
 				ps.setString(2, c.getPassword());
 				ps.execute();
 				conn.close();
-				isSubmitted = true;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				isSubmitted = false;
 			}
 		}
 		return isSubmitted;
 	}
 	
-	public boolean isNameInDB(String username) {
+	public boolean isNameValid(String username) {
 		Connection conn = ConnectionFactory.getConnection();
-		boolean isInDB = true;
+		boolean isValid = true;
 		String sql = "select * from customerNames;";
 		HashSet<String> usernames = new HashSet<String>();
 		try {
@@ -46,11 +45,11 @@ public class CustomerDoa {
 			while(rs.next()) {	
 				usernames.add(rs.getString("username"));
 			}
-			isInDB = !usernames.add(username);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			isValid = false;
 		}
-		return isInDB;
+		return isValid && usernames.add(username);
 	}
 	public Customer selectCustomer(String username, String password) throws PasswordMatchException, UsernameException{
 		Connection conn = ConnectionFactory.getConnection();

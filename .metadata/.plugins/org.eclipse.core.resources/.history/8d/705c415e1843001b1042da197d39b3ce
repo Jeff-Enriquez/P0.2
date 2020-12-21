@@ -13,7 +13,7 @@ public class AccountApplicationDoa {
 	public User getApplication() {
 		User user = null;
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from account_application limit 1;";
+		String sql = "select top 1 * from account_application;";
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);

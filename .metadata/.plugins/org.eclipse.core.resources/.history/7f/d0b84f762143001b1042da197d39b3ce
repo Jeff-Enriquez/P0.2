@@ -61,7 +61,7 @@ public class AdminDoa {
 	public void deleteCustomer(String username) throws UsernameException {
 		CustomerDoa customerDoa = new CustomerDoa();
 		boolean isNameInDB = customerDoa.isNameInDB(username);
-		if(!isNameInDB) {
+		if(!isValid) {
 			throw new UsernameException();
 		}
 		Connection conn = ConnectionFactory.getConnection();

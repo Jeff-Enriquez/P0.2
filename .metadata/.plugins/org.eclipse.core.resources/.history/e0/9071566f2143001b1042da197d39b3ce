@@ -60,8 +60,8 @@ public class AdminDoa {
 	}
 	public void deleteCustomer(String username) throws UsernameException {
 		CustomerDoa customerDoa = new CustomerDoa();
-		boolean isNameInDB = customerDoa.isNameInDB(username);
-		if(!isNameInDB) {
+		boolean isValid = customerDoa.isNameValid(username);
+		if(!isValid) {
 			throw new UsernameException();
 		}
 		Connection conn = ConnectionFactory.getConnection();

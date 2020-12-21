@@ -37,7 +37,7 @@ public class CustomerDoa {
 	
 	public boolean isNameInDB(String username) {
 		Connection conn = ConnectionFactory.getConnection();
-		boolean isInDB = true;
+		boolean isValid = true;
 		String sql = "select * from customerNames;";
 		HashSet<String> usernames = new HashSet<String>();
 		try {
@@ -46,11 +46,11 @@ public class CustomerDoa {
 			while(rs.next()) {	
 				usernames.add(rs.getString("username"));
 			}
-			isInDB = !usernames.add(username);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			isValid = false;
 		}
-		return isInDB;
+		return isValid && usernames.add(username);
 	}
 	public Customer selectCustomer(String username, String password) throws PasswordMatchException, UsernameException{
 		Connection conn = ConnectionFactory.getConnection();
