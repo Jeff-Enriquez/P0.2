@@ -1,13 +1,10 @@
 package com.BankApp;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.PasswordMatchException;
 import com.BankApp.CustomExceptions.UsernameException;
 import com.BankApp.Doa.EmployeeDoa;
-import com.BankApp.Models.Customer;
 import com.BankApp.Models.Employee;
 
 public class EmployeeDriver extends Driver{
@@ -30,8 +27,8 @@ public class EmployeeDriver extends Driver{
 				isValid = false;
 			}
 		}
-		String input = "YES";
-		while(input.equals("YES")) {			
+		String continue = "YES";
+		while(continue.equals("YES")) {			
 			actions();
 			System.out.print("Enter 'YES' to request another action: ");
 			input = sc.nextLine();
@@ -44,48 +41,21 @@ public class EmployeeDriver extends Driver{
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
-				viewCustomerInfo();
+				viewAccount();
 				break;
 			case "2":
-				viewAllCustomerAccounts();
+				viewAllAccounts();
 				break;
 			default:
 				System.out.println("Invalid input");
 		}
 	}
-	private static void viewCustomerInfo() {
+	private static void viewAccount() {
 		System.out.print("Enter the customer username: ");
 		String username = sc.nextLine();
-		try {
-			EmployeeDoa employeeDoa = new EmployeeDoa();
-			Customer c = employeeDoa.viewCustomerInfo(username);
-			printCustomerInfo(c);
-		} catch(UsernameException e) {
-			System.out.println("User does not exist");
-		}
+		
 	}
-	private static void viewAllCustomerAccounts() {
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		ArrayList<Customer> customers = employeeDoa.viewAllCustomers();
-		if(customers == null) {
-			System.out.println("There are no customers");
-		} else {
-			for(Customer c : customers) {
-				printCustomerInfo(c);
-			}
-		}
-	}
-	private static void printCustomerInfo(Customer c) {
-		System.out.println("-----CUSTOMER-----");
-		System.out.println("\tUsername: " + c.username);
-		System.out.println("\tPassword: " + c.getPassword());
-		System.out.println("accounts: ");
-		if(c.getAccounts().size() == 0) {
-			System.out.println("This user does not have any accounts");
-		} else {				
-			c.getAccounts().forEach((accNum, balance) -> {
-				System.out.println("\tAccount Number: " + accNum + " Balance: " + balance);
-			});
-		}
+	private static void viewAllAccounts() {
+		
 	}
 }

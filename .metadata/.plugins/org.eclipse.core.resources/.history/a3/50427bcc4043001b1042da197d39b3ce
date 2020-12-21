@@ -29,13 +29,13 @@ public class AdminDriver extends Driver{
 		}
 		String input = "YES";
 		while(input.equals("YES")) {			
-			actions();
+			adminActions();
 			System.out.print("Enter 'YES' to request another action: ");
 			input = sc.nextLine();
 		}
 	}
 	
-	private static void actions() {
+	private static void adminActions() {
 		System.out.println("Would you like to: ");
 		System.out.println("1) Approve / Deny accounts");
 		System.out.println("2) Withdraw from an account");

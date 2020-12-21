@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.BankApp.Models.Customer;
@@ -36,29 +35,22 @@ public class EmployeeDoa {
 	}
 	
 	public Customer viewCustomerInfo(String username) throws UsernameException {
-		Customer c = getCustomer(username);
-		HashMap<Integer, Double> accounts = getAccounts(username);
-		c.setAccounts(accounts);
-		return c;
-	}
-	public ArrayList<Customer> viewAllCustomers() {
-		ArrayList<Customer> customers = new ArrayList<Customer>();
 		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from customer;";
+		String sql = "select * from customer where username = ?;";
 		try {			
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				Customer c = new Customer(username, password);
-				c.setAccounts(getAccounts(username));
-				customers.add(c);
+			if(!rs.next()) {
+				throw new UsernameException();
 			}
-		} catch(SQLException e) {
+			String name = rs.getString("username");
+			String password = rs.getString("password");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return customers;
+		
+		return null;
 	}
 	
 	private static HashMap<Integer, Double> getAccounts(String username) {
@@ -72,6 +64,10 @@ public class EmployeeDoa {
 			while(rs.next()) {
 				accounts.put(rs.getInt("number"), rs.getDouble("balance"));
 			}
+			if(!rs.next()) {
+			}
+			String name = rs.getString("username");
+			String password = rs.getString("password");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

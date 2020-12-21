@@ -1,7 +1,5 @@
 package com.BankApp;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.PasswordMatchException;
@@ -44,7 +42,7 @@ public class EmployeeDriver extends Driver{
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
-				viewCustomerInfo();
+				viewCustomerAccount();
 				break;
 			case "2":
 				viewAllCustomerAccounts();
@@ -53,39 +51,17 @@ public class EmployeeDriver extends Driver{
 				System.out.println("Invalid input");
 		}
 	}
-	private static void viewCustomerInfo() {
+	private static void viewCustomerAccount() {
 		System.out.print("Enter the customer username: ");
 		String username = sc.nextLine();
 		try {
 			EmployeeDoa employeeDoa = new EmployeeDoa();
-			Customer c = employeeDoa.viewCustomerInfo(username);
-			printCustomerInfo(c);
+			Customer c = employeeDoa.viewCustomerAccount(username);
 		} catch(UsernameException e) {
 			System.out.println("User does not exist");
 		}
 	}
 	private static void viewAllCustomerAccounts() {
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		ArrayList<Customer> customers = employeeDoa.viewAllCustomers();
-		if(customers == null) {
-			System.out.println("There are no customers");
-		} else {
-			for(Customer c : customers) {
-				printCustomerInfo(c);
-			}
-		}
-	}
-	private static void printCustomerInfo(Customer c) {
-		System.out.println("-----CUSTOMER-----");
-		System.out.println("\tUsername: " + c.username);
-		System.out.println("\tPassword: " + c.getPassword());
-		System.out.println("accounts: ");
-		if(c.getAccounts().size() == 0) {
-			System.out.println("This user does not have any accounts");
-		} else {				
-			c.getAccounts().forEach((accNum, balance) -> {
-				System.out.println("\tAccount Number: " + accNum + " Balance: " + balance);
-			});
-		}
+		
 	}
 }

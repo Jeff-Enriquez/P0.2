@@ -9,7 +9,7 @@ public class Customer extends User {
 		super(username, password);
 	}
 	
-	public void setAccounts(HashMap<Integer, Double> accounts) {
+	public void setAccounts(HashSet<String> accounts) {
 		this.accounts = accounts;
 	}
 	

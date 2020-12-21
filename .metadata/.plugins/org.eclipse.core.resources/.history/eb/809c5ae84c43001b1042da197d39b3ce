@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.BankApp.Models.Customer;
 import com.BankApp.Models.Employee;
@@ -40,25 +40,6 @@ public class EmployeeDoa {
 		HashMap<Integer, Double> accounts = getAccounts(username);
 		c.setAccounts(accounts);
 		return c;
-	}
-	public ArrayList<Customer> viewAllCustomers() {
-		ArrayList<Customer> customers = new ArrayList<Customer>();
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select * from customer;";
-		try {			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				Customer c = new Customer(username, password);
-				c.setAccounts(getAccounts(username));
-				customers.add(c);
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return customers;
 	}
 	
 	private static HashMap<Integer, Double> getAccounts(String username) {
