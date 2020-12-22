@@ -186,6 +186,7 @@ public class AdminDriver extends Driver{
 	}
 	
 	private static void processAccount() {
+		Scanner sc = new Scanner(System.in);
 		String input;
 		AccountApplicationDoa accAppDoa = new AccountApplicationDoa();
 		System.out.println("There are currently " + accAppDoa.applicationCount() + " pending.");

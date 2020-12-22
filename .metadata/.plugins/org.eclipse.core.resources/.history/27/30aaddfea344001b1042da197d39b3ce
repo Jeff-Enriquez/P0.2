@@ -31,7 +31,7 @@ public class Main {
 				System.out.println("Your input was incorrect");
 			}
 			
-			System.out.println("Enter 'YES' if you would like to go back to the welcome screen");
+			System.out.println("Enter \"YES\" if you would like to go back to the welcome screen");
 			continueApplication = sc.nextLine();
 		}
 	}

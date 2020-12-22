@@ -18,7 +18,7 @@ import com.BankApp.Models.Customer;
 public class CustomerDriver extends Driver{
 	private final static Scanner sc = new Scanner(System.in);
 	private static Customer currentCustomer = null;
-	private static Logger logger = LogManager.getLogger(CustomerDriver.class);
+	private static Logger logger = LogManager.getLogger(AdminDriver.class);
 
 	public static void login() {
 		CustomerDoa customerDoa = new CustomerDoa();
@@ -153,13 +153,10 @@ public class CustomerDriver extends Driver{
 			currentCustomer.updateAccount(account1, balance[0]);
 		} catch (AccountException e) {
 			System.out.println("The account you are transferring to does not exist.");
-			logger.warn("Customer User: " + currentCustomer.username + " tried to transfer to a non existing account: " + account2);
 		} catch (OverdrawException e) {
 			System.out.println("Your account does not have enough funds to make the transfer");
-			logger.warn("Customer User: " + currentCustomer.username + " tried to transfer " + cash + " but does not have enough funds in their account: " + account1);
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
-			logger.warn("Customer User: " + currentCustomer.username + " tried to transfer a negative cash value");
 		}
 	}
 	private static void deposit() {
@@ -211,7 +208,6 @@ public class CustomerDriver extends Driver{
 			logger.warn("Customer User: " + currentCustomer.username + " tried to withdraw " + cash + "from a non existing account: " + account);
 		} catch (OverdrawException e) {
 			System.out.println("The account does not have enough funds to make the withdrawal");
-			logger.warn("Customer User: " + currentCustomer.username + " tried to withdraw with (" + cash + ") more than they had in account: " + account);
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
 			logger.warn("Customer User: " + currentCustomer.username + " tried to withdraw with a negative cash value");

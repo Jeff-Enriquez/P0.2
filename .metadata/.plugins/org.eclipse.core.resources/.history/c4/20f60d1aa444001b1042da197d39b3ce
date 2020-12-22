@@ -18,7 +18,7 @@ import com.BankApp.Models.Customer;
 public class CustomerDriver extends Driver{
 	private final static Scanner sc = new Scanner(System.in);
 	private static Customer currentCustomer = null;
-	private static Logger logger = LogManager.getLogger(CustomerDriver.class);
+	private static Logger logger = LogManager.getLogger(AdminDriver.class);
 
 	public static void login() {
 		CustomerDoa customerDoa = new CustomerDoa();
