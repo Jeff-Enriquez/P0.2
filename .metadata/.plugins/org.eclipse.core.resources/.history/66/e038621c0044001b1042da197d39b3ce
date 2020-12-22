@@ -52,7 +52,6 @@ public class CustomerDriver extends Driver{
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
-				applyForJointAccount();
 				break;
 			case "2":
 				if(currentCustomer.getAccounts().size() > 0){
@@ -80,15 +79,6 @@ public class CustomerDriver extends Driver{
 				break;
 			default:
 				System.out.println("Invalid input");
-		}
-	}
-	private static void applyForJointAccount() {
-		CustomerDoa customerDoa = new CustomerDoa();
-		boolean applied = customerDoa.applyForJointAccount(currentCustomer.username);
-		if(applied) {			
-			System.out.println("Your request for a joint account has been submitted!");
-		} else {
-			System.out.println("You have already submitted a request");
 		}
 	}
 	private static void viewInfo() {

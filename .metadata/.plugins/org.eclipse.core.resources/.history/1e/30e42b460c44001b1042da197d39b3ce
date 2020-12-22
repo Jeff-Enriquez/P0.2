@@ -158,18 +158,16 @@ public class CustomerDoa {
 		return balance;
 	}
 	public boolean applyForJointAccount(String username) {
-		boolean canApply = false;
+		boolean canApply = true;
 		boolean didApply = false;
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "select from joint_application where username = ?;";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				canApply = true;
-			}
+			ps.execute();
 			ps.close();
+			canApply = false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

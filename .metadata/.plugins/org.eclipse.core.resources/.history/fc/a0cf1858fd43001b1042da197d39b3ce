@@ -16,8 +16,4 @@ public class Customer extends User {
 	public HashMap<Integer, Double> getAccounts() {
 		return accounts;
 	}
-	
-	public void updateAccount(Integer account, Double cash){
-		this.accounts.put(account, cash);
-	}
 }

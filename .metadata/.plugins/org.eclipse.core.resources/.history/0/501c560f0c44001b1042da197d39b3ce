@@ -84,12 +84,8 @@ public class CustomerDriver extends Driver{
 	}
 	private static void applyForJointAccount() {
 		CustomerDoa customerDoa = new CustomerDoa();
-		boolean applied = customerDoa.applyForJointAccount(currentCustomer.username);
-		if(applied) {			
-			System.out.println("Your request for a joint account has been submitted!");
-		} else {
-			System.out.println("You have already submitted a request");
-		}
+		customerDoa.applyForJointAccount(currentCustomer.username);
+		System.out.println("Your request for a joint account has been submitted!");
 	}
 	private static void viewInfo() {
 		System.out.println("Your info");

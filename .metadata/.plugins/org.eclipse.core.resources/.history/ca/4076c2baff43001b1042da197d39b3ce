@@ -157,36 +157,6 @@ public class CustomerDoa {
 		updateBalance(account, balance);
 		return balance;
 	}
-	public boolean applyForJointAccount(String username) {
-		boolean canApply = false;
-		boolean didApply = false;
-		Connection conn = ConnectionFactory.getConnection();
-		String sql = "select from joint_application where username = ?;";
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			if(!rs.next()) {
-				canApply = true;
-			}
-			ps.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		if(canApply) {
-			sql = "insert into joint_application values(?);";
-			try {
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setString(1, username);
-				ps.execute();
-				ps.close();
-				didApply = true;
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return didApply;
-	}
 	private void updateBalance(int account, Double balance) {
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "update account set balance = " + balance + " where number = ?;";

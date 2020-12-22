@@ -1,14 +1,11 @@
 package com.BankApp;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.BankApp.CustomExceptions.*;
 import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
 import com.BankApp.Doa.CustomerDoa;
-import com.BankApp.Doa.EmployeeDoa;
-import com.BankApp.Models.Customer;
 import com.BankApp.Models.User;
 
 public class AdminDriver extends Driver{
@@ -47,8 +44,7 @@ public class AdminDriver extends Driver{
 		System.out.println("4) Transfer between two accounts");
 		System.out.println("5) Cancel an account");
 		System.out.println("6) Remove customer");
-		System.out.println("7) View customer info");
-		System.out.println("8) View all customers");
+//		System.out.println("7) View all accounts");
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
@@ -70,10 +66,6 @@ public class AdminDriver extends Driver{
 				removeCustomer();
 				break;
 			case "7":
-				viewCustomerInfo();
-				break;
-			case "8":
-				viewAllCustomerAccounts();
 				break;
 			default:
 				System.out.println("Invalid input");
@@ -194,41 +186,6 @@ public class AdminDriver extends Driver{
 		if(user.getAccountType().equals("customer")) {
 			AdminDoa adminDoa = new AdminDoa();
 			adminDoa.approveCustomerApplication(user);
-		}
-	}
-	private static void viewCustomerInfo() {
-		System.out.print("Enter the customer username: ");
-		String username = sc.nextLine();
-		try {
-			EmployeeDoa employeeDoa = new EmployeeDoa();
-			Customer c = employeeDoa.viewCustomerInfo(username);
-			printCustomerInfo(c);
-		} catch(UsernameException e) {
-			System.out.println("User does not exist");
-		}
-	}
-	private static void viewAllCustomerAccounts() {
-		EmployeeDoa employeeDoa = new EmployeeDoa();
-		ArrayList<Customer> customers = employeeDoa.viewAllCustomers();
-		if(customers == null) {
-			System.out.println("There are no customers");
-		} else {
-			for(Customer c : customers) {
-				printCustomerInfo(c);
-			}
-		}
-	}
-	private static void printCustomerInfo(Customer c) {
-		System.out.println("-----CUSTOMER-----");
-		System.out.println("\tUsername: " + c.username);
-		System.out.println("\tPassword: " + c.getPassword());
-		System.out.println("accounts: ");
-		if(c.getAccounts().size() == 0) {
-			System.out.println("This user does not have any accounts");
-		} else {				
-			c.getAccounts().forEach((accNum, balance) -> {
-				System.out.println("\tAccount Number: " + accNum + " Balance: " + balance);
-			});
 		}
 	}
 }
