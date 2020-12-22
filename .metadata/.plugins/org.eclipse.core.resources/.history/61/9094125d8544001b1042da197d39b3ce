@@ -3,22 +3,17 @@ package com.BankApp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
 import com.BankApp.CustomExceptions.*;
 import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
 import com.BankApp.Doa.CustomerDoa;
 import com.BankApp.Doa.EmployeeDoa;
-import com.BankApp.Models.Admin;
 import com.BankApp.Models.Customer;
 import com.BankApp.Models.User;
 
 public class AdminDriver extends Driver{
 	private final static Scanner sc = new Scanner(System.in);
-	private static Logger logger = LogManager.getLogger(AdminDriver.class);
-	private static Admin currentUser = null;
+	
 	public static void login() {
 		AdminDoa adminDoa = new AdminDoa();
 		boolean isValid = false;
@@ -28,7 +23,6 @@ public class AdminDriver extends Driver{
 			String password = getPassword();
 			try {
 				adminDoa.selectAdmin(username, password);
-				currentUser = new Admin(username, password);
 			} catch(PasswordMatchException exception) {
 				System.out.println("Password was incorrect, please input information again.");
 				isValid = false;
@@ -112,16 +106,12 @@ public class AdminDriver extends Driver{
 			System.out.println(cash + " has been transferred from " + account1 + " to account " + account2);
 			System.out.println("The new balance for " + account1 + " is: " + balance[0]);
 			System.out.println("The new balance for " + account2 + " is: " + balance[1]);
-			logger.info("User: " + currentUser.username + " transferred " + cash + " from customer account: " + account1 + " to customer account: " + account2);
 		} catch (AccountException e) {
 			System.out.println("The account does not exist.");
-			logger.warn("Admin User: " + currentUser.username + " tried to transfer with an account that does not exist.");
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
-			logger.warn("Admin User: " + currentUser.username + " tried to deposit with a negative number");
 		} catch (OverdrawException e) {
 			System.out.println(account1 + " does not have enough funds to make the transfer.");
-			logger.warn("Admin User: " + currentUser.username + " tried to transfer but account: " + account1 + " does not have enough funds to do so.");
 		}
 	}
 	
@@ -137,13 +127,10 @@ public class AdminDriver extends Driver{
 			Double balance = customerDoa.deposit(account, cash);
 			System.out.println(cash + " has been deposited to account: " + account);
 			System.out.println("The new balance is: " + balance);
-			logger.info("Admin User: " + currentUser.username + " deposited " + cash + " to customer account: " + account);
 		} catch (AccountException e) {
 			System.out.println("The account does not exist.");
-			logger.warn("Admin User: " + currentUser.username + " tried to deposit to an account that does not exist. To account number: " + account);
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
-			logger.warn("Admin User: " + currentUser.username + " tried to deposit with a negative number");
 		}
 	}
 	
@@ -159,16 +146,12 @@ public class AdminDriver extends Driver{
 			Double balance = customerDoa.withdraw(account, cash);
 			System.out.println(cash + " has been withdrawn from account: " + account);
 			System.out.println("The new balance is: " + balance);
-			logger.info("Admin User: " + currentUser.username + " withdrew " + cash + " from customer account: " + account);
 		} catch (AccountException e) {
 			System.out.println("The account does not exist.");
-			logger.warn("Admin User: " + currentUser.username + " tried to withdraw from an account that does not exist. From account number: " + account);
 		} catch (OverdrawException e) {
 			System.out.println("The account does not have enough funds to make the withdrawal");
-			logger.warn("Admin User: " + currentUser.username + " tried to withdraw from " + cash + " from account: " + account + ". But there were not enough funds in the account to do so.");
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
-			logger.warn("Admin User: " + currentUser.username + " tried to withdraw with a negative number");
 		}
 	}
 	

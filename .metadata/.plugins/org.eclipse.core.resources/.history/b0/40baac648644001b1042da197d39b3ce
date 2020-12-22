@@ -115,13 +115,10 @@ public class AdminDriver extends Driver{
 			logger.info("User: " + currentUser.username + " transferred " + cash + " from customer account: " + account1 + " to customer account: " + account2);
 		} catch (AccountException e) {
 			System.out.println("The account does not exist.");
-			logger.warn("Admin User: " + currentUser.username + " tried to transfer with an account that does not exist.");
 		} catch (NegativeCashException e) {
 			System.out.println("The withdrawal value cannot be negative");
-			logger.warn("Admin User: " + currentUser.username + " tried to deposit with a negative number");
 		} catch (OverdrawException e) {
 			System.out.println(account1 + " does not have enough funds to make the transfer.");
-			logger.warn("Admin User: " + currentUser.username + " tried to transfer but account: " + account1 + " does not have enough funds to do so.");
 		}
 	}
 	
