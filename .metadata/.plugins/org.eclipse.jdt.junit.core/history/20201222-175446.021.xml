@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestSuite" project="BankApp" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.BankApp.TestSuite" time="1.621">
+    <testsuite name="JUnit Jupiter" time="1.621">
+      <testsuite name="AdminDoaTest" time="1.621">
+        <testcase name="selectAdminPasswordException()" classname="AdminDoaTest" time="0.883"/>
+        <testcase name="selectAdmin()" classname="AdminDoaTest" time="0.184"/>
+        <testcase name="approveApplication()" classname="AdminDoaTest" time="0.377"/>
+        <testcase name="selectAdminUsernameException()" classname="AdminDoaTest" time="0.177"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testrun>

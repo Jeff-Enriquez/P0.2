@@ -1,0 +1,16 @@
+package com.BankApp;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions.*;
+import com.BankApp.Doa.AdminDoa;
+import com.BankApp.Models.Admin;
+
+public class AdminDoaTest {
+	@Test
+	public void selectAdmin() {
+		AdminDoa adminDoa = new AdminDoa();
+		assertNull(adminDoa.selectAdmin("admin", ""));
+		Admin admin = adminDoa.selectAdmin("admin", "admin");
+		Admin admin2 = 
+	}
+}

@@ -31,6 +31,30 @@ public class AdminDoa {
 		}
 		return new Admin(username, password);
 	}
+	public void denyJointAccountApplication(String username) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "delete from joint_application where username = ?;";
+		try {			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.execute();
+			ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void approveJointAccountApplication(String username) {
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "call approveJointApplication(?)";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.execute();
+			ps.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public void approveCustomerApplication(User user) {
 		Connection conn = ConnectionFactory.getConnection();
 		String sql = "call approveCustomerApplication(?,?)";

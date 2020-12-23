@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AdminDoaTest" project="BankApp" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.BankApp.AdminDoaTest" time="1.043" displayname="AdminDoaTest" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.AdminDoaTest]">
+    <testcase name="selectAdminPasswordException" classname="com.BankApp.AdminDoaTest" time="0.859" displayname="selectAdminPasswordException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.AdminDoaTest]/[method:selectAdminPasswordException()]"/>
+    <testcase name="selectAdminUsernameException" classname="com.BankApp.AdminDoaTest" time="0.185" displayname="selectAdminUsernameException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.AdminDoaTest]/[method:selectAdminUsernameException()]"/>
+  </testsuite>
+</testrun>

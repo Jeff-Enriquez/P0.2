@@ -1,0 +1,16 @@
+package com.BankApp;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.*;
+
+public class AdminDoaTest {
+	@BeforeAll
+	public static void initializeData() {
+		
+	}
+	@AfterAll
+	public static void deleteData() {
+		
+	}
+}

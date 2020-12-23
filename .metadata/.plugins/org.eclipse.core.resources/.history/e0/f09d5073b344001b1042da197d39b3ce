@@ -1,0 +1,33 @@
+package com.BankApp;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.*;
+import com.BankApp.Doa.AdminDoa;
+import com.BankApp.Models.Admin;
+
+import com.BankApp.CustomExceptions.*;
+
+public class AdminDoaTest {
+	private static final String USERNAME = "admin";
+	private static final String PASSWORD = "admin";
+	private static final AdminDoa adminDoa = new AdminDoa();
+	@Test
+	public void selectAdminUsernameException() {
+		assertThrows(UsernameException.class, () -> adminDoa.selectAdmin("", ""));
+	}
+	@Test
+	public void selectAdminPasswordException() {
+		assertThrows(PasswordMatchException.class, () -> adminDoa.selectAdmin(USERNAME, ""));
+	}
+	@Test void selectAdmin() {
+		Admin admin = null;
+		try {
+			admin = adminDoa.selectAdmin(USERNAME, PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(admin.username, USERNAME);
+		assertEquals(admin.getPassword(), PASSWORD);
+	}
+}

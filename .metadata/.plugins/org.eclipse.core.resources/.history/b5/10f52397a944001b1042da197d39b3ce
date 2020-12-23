@@ -1,0 +1,10 @@
+package com.BankApp;
+
+import org.junit.jupiter.api.*;
+
+public class AdminDoaTest {
+	@Test
+	public void selectAdmin() {
+		
+	}
+}

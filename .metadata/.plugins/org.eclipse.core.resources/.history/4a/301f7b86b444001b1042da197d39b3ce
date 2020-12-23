@@ -1,0 +1,59 @@
+package com.BankApp;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.junit.jupiter.api.*;
+import com.BankApp.Doa.AdminDoa;
+import com.BankApp.Doa.CustomerDoa;
+import com.BankApp.Models.Admin;
+import com.BankApp.Models.Customer;
+import com.BankApp.Models.User;
+import com.BankApp.Util.ConnectionFactory;
+import com.BankApp.CustomExceptions.*;
+
+public class AdminDoaTest {
+	private static final String USERNAME = "admin";
+	private static final String PASSWORD = "admin";
+	private static final AdminDoa adminDoa = new AdminDoa();
+	@Test
+	public void selectAdminUsernameException() {
+		assertThrows(UsernameException.class, () -> adminDoa.selectAdmin("", ""));
+	}
+	@Test
+	public void selectAdminPasswordException() {
+		assertThrows(PasswordMatchException.class, () -> adminDoa.selectAdmin(USERNAME, ""));
+	}
+	@Test 
+	public void selectAdmin() {
+		Admin admin = null;
+		try {
+			admin = adminDoa.selectAdmin(USERNAME, PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(admin.username, USERNAME);
+		assertEquals(admin.getPassword(), PASSWORD);
+	}
+	@Test
+	public void approveApplication() {
+		//First submit application
+		Connection conn = ConnectionFactory.getConnection();
+		String sql = "INSERT INTO account_application values ('qweiutghasdkljfhq', 'asfiwgajlksafwiofsl', 'customer');";
+		try {
+			Statement ps = conn.createStatement();
+			ps.execute(sql);
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// TEST: APPROVE APPLICATION
+		User customer = new Customer("qweiutghasdkljfhq", "asfiwgajlksafwiofsl");
+		adminDoa.approveCustomerApplication(customer);
+	}
+	
+}

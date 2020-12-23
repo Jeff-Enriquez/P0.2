@@ -48,6 +48,7 @@ public class AdminDriver extends Driver{
 	private static void actions() {
 		System.out.println("Would you like to: ");
 		System.out.println("1) Approve / Deny accounts");
+		//Approve joint account
 		System.out.println("2) Withdraw from an account");
 		System.out.println("3) Deposit to an account");
 		System.out.println("4) Transfer between two accounts");
