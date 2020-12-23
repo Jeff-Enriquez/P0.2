@@ -1,1 +1,8 @@
 2020-12-22 14:21:02 INFO  AdminDriver:208 - Customer User: jeff has withdrawn 1.0 from their account: 2
+2020-12-22 22:18:55 WARN  AdminDriver:173 - Admin User: admin tried to withdraw from 1000.0 from account: 2. But there were not enough funds in the account to do so.
+2020-12-22 22:19:04 INFO  AdminDriver:167 - Admin User: admin withdrew 1.0 from customer account: 2
+2020-12-22 22:19:33 WARN  AdminDriver:151 - Admin User: admin tried to deposit with a negative number
+2020-12-22 22:25:43 WARN  CustomerDriver:156 - Customer User: jeff tried to transfer to a non existing account: 1241254
+2020-12-23 09:17:02 WARN  CustomerDriver:227 - Customer User: jeff tried to withdraw with a negative cash value
+2020-12-23 09:17:11 INFO  CustomerDriver:218 - Customer User: jeff has withdrawn 5.0 from their account: 2
+2020-12-23 09:19:12 WARN  CustomerDriver:193 - Customer User: jeff tried to deposit with a negative cash value

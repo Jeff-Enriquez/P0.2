@@ -164,7 +164,6 @@ public class CustomerDriver extends Driver{
 	}
 	private static void deposit() {
 		System.out.print("Which account would you like to deposit to?");
-		System.out.println("");
 		currentCustomer.getAccounts().forEach((account, balance) -> {
 			System.out.println("\tAccount: " + account + " Balance: " + balance);
 		});
@@ -195,7 +194,6 @@ public class CustomerDriver extends Driver{
 	}
 	private static void withdraw() {
 		System.out.print("Which account would you like to withdraw from?");
-		System.out.println("");
 		currentCustomer.getAccounts().forEach((account, balance) -> {
 			System.out.println("\tAccount: " + account + " Balance: " + balance);
 		});

@@ -41,22 +41,14 @@ public class EmployeeDriver extends Driver{
 	}
 	private static void actions() {
 		System.out.println("Would you like to: ");
-		System.out.println("1) Approve / Deny accounts");
-		System.out.println("2) Approve / Deny JOINT accounts");
-		System.out.println("3) View customer info");
-		System.out.println("4) View all customers");
+		System.out.println("1) View customer info");
+		System.out.println("2) View all customers");
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
-				processAccount();
-				break;
-			case "2":
-				processJointAccount();
-				break;
-			case "3":
 				viewCustomerInfo();
 				break;
-			case "4":
+			case "2":
 				viewAllCustomerAccounts();
 				break;
 			default:
@@ -138,12 +130,6 @@ public class EmployeeDriver extends Driver{
 			} else {
 				System.out.println("Invalid input");
 			}
-		}
-	}
-	private static void approveApplication(User user) {
-		if(user.getAccountType().equals("customer")) {
-			AdminDoa adminDoa = new AdminDoa();
-			adminDoa.approveCustomerApplication(user);
 		}
 	}
 }

@@ -10,7 +10,7 @@ public class Main {
 		while(continueApplication.equals("YES")) {			
 			System.out.println("Would you like to:");
 			System.out.println("1) Create Account");
-			System.out.println("2) Customer Login");
+			System.out.println("1) Customer Login");
 			System.out.println("3) Employee login");
 			System.out.println("4) Admin login");
 			String input = sc.nextLine();
