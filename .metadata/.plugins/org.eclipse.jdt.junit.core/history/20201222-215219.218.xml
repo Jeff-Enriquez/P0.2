@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerDoaTest" project="BankApp" tests="8" started="0" failures="0" errors="1" ignored="0">
+  <testsuite name="com.BankApp.CustomerDoaTest" incomplete="true" displayname="CustomerDoaTest" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]">
+    <error>org.junit.platform.commons.JUnitException: @BeforeEach method 'public static void com.BankApp.CustomerDoaTest.updateBalance()' must not be static.&#13;
+	at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.assertNonStatic(LifecycleMethodUtils.java:65)&#13;
+	at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.lambda$findMethodsAndAssertNonStatic$1(LifecycleMethodUtils.java:89)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)&#13;
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1087)&#13;
+	at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findMethodsAndAssertNonStatic(LifecycleMethodUtils.java:89)&#13;
+	at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findBeforeEachMethods(LifecycleMethodUtils.java:48)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.registerBeforeEachMethodAdapters(ClassBasedTestDescriptor.java:425)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.prepare(ClassBasedTestDescriptor.java:154)&#13;
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.prepare(ClassBasedTestDescriptor.java:77)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:107)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:107)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:75)&#13;
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)&#13;
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)&#13;
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)&#13;
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)&#13;
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)&#13;
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)&#13;
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)&#13;
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:229)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:197)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:211)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:191)&#13;
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137)&#13;
+	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:98)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:41)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:542)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:770)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:464)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)&#13;
+&#13;
+</error>
+    <testcase name="withdrawOverdrawException" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="withdrawOverdrawException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdrawOverdrawException()]"/>
+    <testcase name="withdraw" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="withdraw()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdraw()]"/>
+    <testcase name="withdrawNegativeException" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="withdrawNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdrawNegativeException()]"/>
+    <testcase name="depositNegativeException" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="depositNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:depositNegativeException()]"/>
+    <testcase name="submitApplication" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="submitApplication()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:submitApplication()]"/>
+    <testcase name="transferNegativeException" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="transferNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:transferNegativeException()]"/>
+    <testcase name="transfer" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="transfer()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:transfer()]"/>
+    <testcase name="deposit" classname="com.BankApp.CustomerDoaTest" incomplete="true" displayname="deposit()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:deposit()]"/>
+  </testsuite>
+</testrun>

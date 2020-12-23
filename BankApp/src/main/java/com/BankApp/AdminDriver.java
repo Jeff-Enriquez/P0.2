@@ -11,6 +11,7 @@ import com.BankApp.Doa.AccountApplicationDoa;
 import com.BankApp.Doa.AdminDoa;
 import com.BankApp.Doa.CustomerDoa;
 import com.BankApp.Doa.EmployeeDoa;
+import com.BankApp.Doa.JointAccountApplicationDoa;
 import com.BankApp.Models.Admin;
 import com.BankApp.Models.Customer;
 import com.BankApp.Models.User;
@@ -48,38 +49,41 @@ public class AdminDriver extends Driver{
 	private static void actions() {
 		System.out.println("Would you like to: ");
 		System.out.println("1) Approve / Deny accounts");
-		//Approve joint account
-		System.out.println("2) Withdraw from an account");
-		System.out.println("3) Deposit to an account");
-		System.out.println("4) Transfer between two accounts");
-		System.out.println("5) Cancel an account");
-		System.out.println("6) Remove customer");
-		System.out.println("7) View customer info");
-		System.out.println("8) View all customers");
+		System.out.println("2) Approve / Deny JOINT accounts");
+		System.out.println("3) Withdraw from an account");
+		System.out.println("4) Deposit to an account");
+		System.out.println("5) Transfer between two accounts");
+		System.out.println("6) Cancel an account");
+		System.out.println("7) Remove customer");
+		System.out.println("8) View customer info");
+		System.out.println("9) View all customers");
 		String input = sc.nextLine();
 		switch(input) {
 			case "1":
 				processAccount();
 				break;
 			case "2":
-				withdraw();
+				processJointAccount();
 				break;
 			case "3":
-				deposit();
+				withdraw();
 				break;
 			case "4":
-				transfer();
+				deposit();
 				break;
 			case "5":
-				cancelAccount();
+				transfer();
 				break;
 			case "6":
-				removeCustomer();
+				cancelAccount();
 				break;
 			case "7":
-				viewCustomerInfo();
+				removeCustomer();
 				break;
 			case "8":
+				viewCustomerInfo();
+				break;
+			case "9":
 				viewAllCustomerAccounts();
 				break;
 			default:
@@ -183,6 +187,27 @@ public class AdminDriver extends Driver{
 			System.out.println("Customer: " + input + " has been removed.");
 		} catch (UsernameException e) {
 			System.out.println("The username does not exist.");
+		}
+	}
+	
+	private static void processJointAccount() {
+		String input;
+		JointAccountApplicationDoa jointAccAppDoa = new JointAccountApplicationDoa();
+		System.out.println("There are currently " + jointAccAppDoa.applicationCount() + " pending.");
+		String username = jointAccAppDoa.getApplication();
+		if(username != null) {			
+			System.out.println("Would you like to 1) approve or 2) deny");
+			System.out.println("Customer: " + username + " would like a joint account");
+			System.out.print("Enter response: ");
+			input = sc.nextLine();
+			AdminDoa adminDoa = new AdminDoa();
+			if(input.equals("1")) {
+				adminDoa.approveJointAccountApplication(username);
+			} else if(input.equals("2")) {
+				adminDoa.denyJointAccountApplication(username);
+			} else {
+				System.out.println("Invalid input");
+			}
 		}
 	}
 	

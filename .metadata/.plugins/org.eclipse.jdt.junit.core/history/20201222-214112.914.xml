@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerDoaTest" project="BankApp" tests="8" started="8" failures="0" errors="0" ignored="0">
+  <testsuite name="com.BankApp.CustomerDoaTest" time="1.468" displayname="CustomerDoaTest" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]">
+    <testcase name="withdrawOverdrawException" classname="com.BankApp.CustomerDoaTest" time="0.081" displayname="withdrawOverdrawException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdrawOverdrawException()]"/>
+    <testcase name="withdraw" classname="com.BankApp.CustomerDoaTest" time="0.354" displayname="withdraw()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdraw()]"/>
+    <testcase name="withdrawNegativeException" classname="com.BankApp.CustomerDoaTest" time="0.001" displayname="withdrawNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:withdrawNegativeException()]"/>
+    <testcase name="depositNegativeException" classname="com.BankApp.CustomerDoaTest" time="0.002" displayname="depositNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:depositNegativeException()]"/>
+    <testcase name="submitApplication" classname="com.BankApp.CustomerDoaTest" time="0.344" displayname="submitApplication()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:submitApplication()]"/>
+    <testcase name="transferNegativeException" classname="com.BankApp.CustomerDoaTest" time="0.001" displayname="transferNegativeException()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:transferNegativeException()]"/>
+    <testcase name="transfer" classname="com.BankApp.CustomerDoaTest" time="0.001" displayname="transfer()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:transfer()]"/>
+    <testcase name="deposit" classname="com.BankApp.CustomerDoaTest" time="0.684" displayname="deposit()" uniqueid="[engine:junit-jupiter]/[class:com.BankApp.CustomerDoaTest]/[method:deposit()]"/>
+  </testsuite>
+</testrun>
